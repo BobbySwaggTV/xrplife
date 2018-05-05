@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <title>XRPLife UI</title>
+        <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'>
+        <link rel="stylesheet" href="./libraries/css/vuetify.css">
+        <link rel="stylesheet" href="./css/charactermenu.css">
+        <link rel="stylesheet" href="./css/clothingmenu.css">
+
+        <style>
+            html {
+                background-color: transparent !important;
+                overflow-x: hidden;
+                overflow-y: hidden;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+
+        <v-app id="Character_Menu" v-show="showMenu">
+            <v-content>
+
+                <div id="Character_Menu_Characters">
+                    <div id="Character_Menu_Characters_Header">
+                        Character Menu
+                        <v-btn color="blue" icon dark @click="ShowCreator()" :loading="showLoading">
+                            <v-icon>add</v-icon>
+                        </v-btn>
+                    </div>
+                    <div id="Character_Menu_Characters_Body">
+                        <v-container grid-list-md>
+                            <v-alert type="info" :value="true" v-if="characters.length < 1">
+                                You have no characters
+                            </v-alert>
+                            <v-layout row wrap>
+                                <v-flex xs4 v-for="(character, index) in characters">
+                                    <v-card>
+                                        <v-card-title primary-title>
+                                            {{ character.name }}
+                                        </v-card-title>
+                                        <v-card-text>
+                                            Dob: {{ character.dob }} | {{ character.age }}<br>
+                                            Gender: {{ character.gender }}<br>
+                                            Model: {{ character.model }}<br>
+                                            Bank: ${{ character.bank }}
+                                        </v-card-text>
+                                        <v-card-actions>
+                                            <v-btn color="green" block dark @click="SelectCharacter(index)" :loading="showLoading">Select</v-btn>
+                                            <v-btn color="red" block dark @click="DeleteCharacter(index)" :loading="showLoading">Delete</v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
+                    </div>
+                </div>
+
+                <v-dialog v-model="showCreator" persistent max-width="580px" transition="dialog-transition">
+                    <div id="Character_Menu_Creator_Header">
+                        Character Creator
+                    </div>
+                    <div id="Character_Menu_Creator_Body">
+                        <v-form ref="creatorForm">
+
+                            <v-container grid-list-md>
+                                <v-layout row>
+                                    <v-flex xs6>
+                                        <v-text-field label="First Name" v-model="first" :rules="nameRules"></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs6>
+                                        <v-text-field label="Last Name" v-model="last" :rules="nameRules"></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+
+                            <v-container grid-list-md>
+                                <v-layout row>
+                                    <v-flex xs6>
+                                        <v-select :items="genders" v-model="sex" label="Sex" :rules="selectRules"></v-select>
+                                    </v-flex>
+                                    <v-flex xs6>
+                                        <v-select :items="models" v-model="model" label="Model" :rules="selectRules"></v-select>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+
+                            <v-container grid-list-md>
+                                <v-layout row>
+                                    <v-flex xs6>
+                                        <v-text-field label="Dob" :disabled="true" v-model="dob" :rules="dobRules"></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs6>
+                                        <v-text-field label="Age" :disabled="true" v-model="age" :rules="ageRules"></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <v-date-picker id="Character_Menu_Creator_Calender" v-model="dob" landscape></v-date-picker>
+                            </v-container>
+
+                            <v-container grid-list-md>
+                                <v-layout row>
+                                    <v-flex xs6>
+                                        <v-btn color="green" block dark :loading="showLoading" @click="CreateCharacter()">Create</v-btn>
+                                    </v-flex>
+                                    <v-flex xs6>
+                                        <v-btn color="red" block dark :loading="showLoading" @click="ShowCreator()">Cancel</v-btn>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                            <v-alert type="error" :value="showError">
+                                {{ errorMessage }}
+                            </v-alert>
+                        </v-form>
+                    </div>
+                </v-dialog>
+            </v-content>
+        </v-app>
+
+        <v-app id="Clothing_Menu" v-show="showMenu">
+            <v-content>
+                <div id="Character_Menu_Base">
+                    <div id="Character_Menu_Header">
+                        Clothing Menu
+                    </div>
+                    <div id="Character_Menu_Body">
+                        
+                        <v-container grid-list-md>
+                            <v-layout row>
+                                <v-flex xs6>
+                                    <v-btn color="blue" dark block :outline="currentMenu == 'clothing'" @click="ChangeMenu('clothing')">Clothing</v-btn>
+                                </v-flex>
+                                <v-flex xs6>
+                                    <v-btn color="blue" dark block :outline="currentMenu == 'props'" @click="ChangeMenu('props')">Props</v-btn>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
+
+                    </div>
+                </div>
+            </v-content>
+        </v-app>
+
+        <script src="./libraries/js/axios.min.js"></script>
+        <script src="./libraries/js/vue.min.js"></script>
+        <script src="./libraries/js/vuetify.js"></script>
+        <script src="./scripts/js/helpers.js"></script>
+        <script src="./scripts/js/listener.js"></script>
+        <script src="./scripts/js/charactermenu.js"></script>
+        <script src="./scripts/js/clothingmenu.js"></script>
+    </body>
+</html>
