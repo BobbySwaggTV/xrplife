@@ -58,5 +58,8 @@ end)
 
 RegisterNetEvent("XRPLife_CharacterMenu:LoadPed")
 AddEventHandler("XRPLife_CharacterMenu:LoadPed", function(ped, isNew)
+    
+    -- Load Character Here
+    
     TriggerEvent("XRPLife_CharacterMenu:StopSkyCamera")
 end)

@@ -36,6 +36,55 @@ XRPLifeDB["player"].UpdatePlayerName = function(id, callback)
     end)
 end
 
+XRPLifeDB["player"].ConsoleUpdatePlayerRank = function(identifier, rank, callback)
+    local rankAvailable = false
+    for a = 1, #XRPLifeConfig["admin"].Ranks do
+        if XRPLifeConfig["admin"].Ranks[a] == rank then
+            rankAvailable = true
+            break
+        end
+    end
+    if rankAvailable then
+        exports["externalsql"]:DBAsyncQuery({
+            string = "UPDATE players SET `rank` = :rank WHERE `identifier` = :identifier",
+            data = {
+                identifier = identifier,
+                rank = rank
+            }
+        }, function(results)
+            if results.data.changedRows >= 1 then
+                callback(true, tostring("\nChanged rank for (" .. identifier .. ") to [" .. rank .. "]"))
+            else
+                callback(false, tostring("\n" .. identifier .. " is not a registered identifier on your server!"))
+            end
+        end)
+    else
+        callback(false, tostring("\n" .. rank .. " is not a valid rank for your server!"))
+    end
+end
+
+XRPLifeDB["player"].ConsoleUpdatePlayerWhitelisted = function(identifier, whitelisted, callback)
+    print(whitelisted)
+    local status = tonumber(whitelisted)
+    if status == 1 or status == 0 then
+        exports["externalsql"]:DBAsyncQuery({
+            string = "UPDATE players SET `whitelisted` = :whitelisted WHERE `identifier` = :identifier",
+            data = {
+                identifier = identifier,
+                whitelisted = status
+            }
+        }, function(results)
+            if results.data.changedRows >= 1 then
+                callback(true, tostring("\nChanged whitelisted status for (" .. identifier .. ") to [" .. tostring(whitelisted) .. "]"))
+            else
+                callback(false, tostring("Didn't find a player to change whitelist status with that identifier"))
+            end
+        end)
+    else
+        callback(false, tostring("\n You passed a status other than '1' or '0'"))
+    end
+end
+
 if XRPLifeConfig["server"].debugMode then
     XRPLifeServer.Helpers.DebugMessage("Database - player.lua Loaded")
 end

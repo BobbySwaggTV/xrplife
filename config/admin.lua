@@ -14,4 +14,11 @@ XRPLifeConfig["admin"].RankPerms = {
     ["Owner"] = {}
 }
 
+XRPLifeConfig["admin"].ChatRankColors = {
+    ["User"] = "^2",
+    ["Moderator"] = "^4",
+    ["Admin"] = "^1",
+    ["Owner"] = "^8"
+}
+
 XRPLifeServer.Helpers.DebugMessage("Config - admin.lua Loaded")

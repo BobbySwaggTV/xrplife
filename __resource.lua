@@ -30,11 +30,9 @@ files {
     "ui/scripts/js/helpers.js",
     "ui/scripts/js/listener.js",
     "ui/scripts/js/charactermenu.js",
-    "ui/scripts/js/clothingmenu.js",
 
     -- CSS
-    "ui/css/charactermenu.css",
-    "ui/css/clothingmenu.css"
+    "ui/css/charactermenu.css"
 }
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -74,6 +72,8 @@ server_script "database/clothing.lua"
 
 -- Framework Scripts --
 server_script "start.lua"
+server_script "chatHandler.lua"
+server_script "commandHandler.lua"
 
 -- UI Scripts --
 server_script "ui/scripts/lua/character_menu/server.lua"
