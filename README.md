@@ -6,3 +6,11 @@
 
 ## Dependencies
 https://github.com/xander1998/DatabaseAPI
+
+## Installation
+1. Remove the "fivem" resource from your resources folder and server.cfg.
+2. Take xrplife and drop it into your resources folder and add to server.cfg.
+3. Make sure if your resource is "xrplife-master" to rename it to "xrplife".
+4. Edit the files inside the config folder.
+5. Import "xrplife.sql" into your mysql database.
+6. Start server.
