@@ -21,14 +21,9 @@ RegisterCommand("console_ChangeRank", function(source, args, raw)
                 end
 
                 if foundPlayer ~= nil then
-
                     XRPLifeTables["players"].methods.UpdatePlayerRank(foundPlayer, newRank, function()
                         print("Updated player in-game table")
                     end)
-                    print("Player is in-game")
-
-                else
-                    print("Player is NOT in-game")
                 end
             end
         end)

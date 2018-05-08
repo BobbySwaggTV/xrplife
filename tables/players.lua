@@ -3,6 +3,7 @@ XRPLifeTables["players"].methods.AddPlayer = function(src, callback)
         table.insert(XRPLifeTables["players"].list, {
             src = src,
             id = results.data[1].id,
+            ident = XRPLifeServer.Helpers.PlayerIdentifier(XRPLifeConfig["database"].identifier, src),
             rank = results.data[1].rank
         })
         if XRPLifeConfig["server"].debugMode then
