@@ -40,4 +40,19 @@ XRPLifeTables["players"].methods.GetPlayer = function(src, callback)
     callback(found)
 end
 
+XRPLifeTables["players"].methods.UpdatePlayerRank = function(src, newRank, callback)
+    for a = 1, #XRPLifeTables["players"].list do
+        print(tostring(json.encode(XRPLifeTables["players"].list[a])))
+        if XRPLifeTables["players"].list[a].src == src then
+            XRPLifeTables["players"].list[a].rank = newRank
+            if XRPLifeConfig["server"].debugMode then
+                XRPLifeServer.Helpers.DebugMessage(tostring("Tables - Updating Player Rank"))
+                XRPLifeServer.Helpers.DebugMessage(tostring(json.encode(XRPLifeTables["players"].list)))
+            end
+            break
+        end
+    end
+    callback()
+end
+
 XRPLifeServer.Helpers.DebugMessage("Tables - players.lua Loaded")

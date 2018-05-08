@@ -30,9 +30,11 @@ files {
     "ui/scripts/js/helpers.js",
     "ui/scripts/js/listener.js",
     "ui/scripts/js/charactermenu.js",
+    "ui/scripts/js/atmmenu.js",
 
     -- CSS
-    "ui/css/charactermenu.css"
+    "ui/css/charactermenu.css",
+    "ui/css/atmmenu.css"
 }
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -77,6 +79,7 @@ server_script "commandHandler.lua"
 
 -- UI Scripts --
 server_script "ui/scripts/lua/character_menu/server.lua"
+server_script "ui/scripts/lua/atm_menu/server.lua"
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 -----[[ CLIENT SCRIPTS ]]-----
@@ -89,3 +92,4 @@ client_script "fivem.lua"
 -- UI Scripts --
 client_script "ui/scripts/lua/character_menu/client.lua"
 client_script "ui/scripts/lua/character_menu/skycam.lua"
+client_script "ui/scripts/lua/atm_menu/client.lua"

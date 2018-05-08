@@ -4,10 +4,11 @@
         <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'>
         <link rel="stylesheet" href="./libraries/css/vuetify.css">
         <link rel="stylesheet" href="./css/charactermenu.css">
+        <link rel="stylesheet" href="./css/atmmenu.css">
 
         <style>
             html {
-                background-color: transparent !important;
+                background-color: transparent !important; /*  */
                 overflow-x: hidden;
                 overflow-y: hidden;
                 font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -21,7 +22,7 @@
 
                 <div id="Character_Menu_Characters">
                     <div id="Character_Menu_Characters_Header">
-                        Character Menu
+                        XRPLife Character Menu
                         <v-btn color="blue" icon dark @click="ShowCreator()" :loading="showLoading">
                             <v-icon>add</v-icon>
                         </v-btn>
@@ -56,7 +57,7 @@
 
                 <v-dialog v-model="showCreator" persistent max-width="580px" transition="dialog-transition">
                     <div id="Character_Menu_Creator_Header">
-                        Character Creator
+                        XRPLife Character Creator
                     </div>
                     <div id="Character_Menu_Creator_Body">
                         <v-form ref="creatorForm">
@@ -78,7 +79,7 @@
                                         <v-select :items="genders" v-model="sex" label="Sex" :rules="selectRules"></v-select>
                                     </v-flex>
                                     <v-flex xs6>
-                                        <v-select :items="models" v-model="model" label="Model" :rules="selectRules"></v-select>
+                                        <v-select :items="models" v-model="model" label="Model" :rules="selectRules" autocomplete></v-select>
                                     </v-flex>
                                 </v-layout>
                             </v-container>
@@ -114,11 +115,62 @@
             </v-content>
         </v-app>
 
+        <v-app id="ATM_Menu" v-show="showMenu">
+            <v-content>
+                <div id="ATM_Menu_Base">
+                    <div id="ATM_Menu_Header">
+
+                        <div id="ATM_Character_Information">
+
+                            <div>Welcome, {{ character_name }}</div>
+                            <div>Balance: ${{ account }}</div>
+                            
+                        </div>
+
+                        <v-icon dark x-large left>account_balance</v-icon>
+                        XRPLife Banking
+                        <v-btn color="red" slot="activator" absolute right top fab dark small @click="CloseMenu()"><v-icon>clear</v-icon></v-btn>
+                    </div>
+                    <div id="ATM_Menu_Body">
+                        <v-container grid-list-md>
+                            <v-form ref="depositForm" v-model="depositFormValid">
+                                <v-layout row>
+                                    <v-flex xs12>
+                                        <v-text-field label="Amount" type="number" :rules="inputRules" v-model="depositAmount" prefix="$" :disabled="loading" :loading="loading" min="1"></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row>
+                                    <v-flex xs12>
+                                        <v-btn color="blue" block dark :loading="loading" @click="DepositMoney()">Deposit</v-btn>
+                                    </v-flex>
+                                </v-layout>
+                            </v-form>
+                        </v-container>
+                        <v-container grid-list-md>
+                            <v-form ref="withdrawForm" v-model="withdrawFormValid">
+                                <v-layout row>
+                                    <v-flex xs12>
+                                        <v-text-field label="Amount" type="number" :rules="inputRules" v-model="withdrawAmount" prefix="$" :disabled="loading" :loading="loading" min="1"></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row>
+                                    <v-flex xs12>
+                                        <v-btn color="blue" block dark :loading="loading" @click="WithdrawMoney()">Withdraw</v-btn>
+                                    </v-flex>
+                                </v-layout>
+                            </v-form>
+                        </v-container>
+                    </div>
+                </div>
+            </v-content>
+        </v-app>
+
         <script src="./libraries/js/axios.min.js"></script>
         <script src="./libraries/js/vue.min.js"></script>
         <script src="./libraries/js/vuetify.js"></script>
         <script src="./scripts/js/helpers.js"></script>
         <script src="./scripts/js/listener.js"></script>
         <script src="./scripts/js/charactermenu.js"></script>
+        <script src="./scripts/js/atmmenu.js"></script>
     </body>
 </html>

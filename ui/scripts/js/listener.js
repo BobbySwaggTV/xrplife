@@ -40,6 +40,12 @@ document.onreadystatechange = () => {
                 CharacterMenu.showLoading = false;
 
             }
+
+            // ATM Menu
+            if (event.data.type == "open_atm_menu") {
+                ATMMenu.OpenMenu(event.data.name, event.data.balance);
+            }
+
         });
     }
 }

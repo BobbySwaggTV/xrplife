@@ -15,14 +15,16 @@ RegisterCommand("console_ChangeRank", function(source, args, raw)
 
                 for a = 1, #players do
                     if XRPLifeServer.Helpers.PlayerIdentifier(XRPLifeConfig["database"].identifier, players[a]) == identifier then
-                        foundPlayer = players[a]
+                        foundPlayer = tonumber(players[a])
                         break
                     end
                 end
 
                 if foundPlayer ~= nil then
 
-                    -- IF PLAYER IS INGAME MAKE SURE TO UPDATE THE SERVERSIDED TABLE [ YOU NEED TO RECREATE THE FUNCTION TO DO THAT ]
+                    XRPLifeTables["players"].methods.UpdatePlayerRank(foundPlayer, newRank, function()
+                        print("Updated player in-game table")
+                    end)
                     print("Player is in-game")
 
                 else
