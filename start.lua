@@ -17,8 +17,8 @@ AddEventHandler("playerConnecting", function(name, reason, deferrals)
                 if XRPLifeConfig["admin"].whitelistActive then
                     if getresults.data[1].whitelisted == 1 then
                         XRPLifeDB["player"].UpdatePlayerName(src, function(results)
-                            deferrals.done()
                         end)
+                        deferrals.done()
                     else
                         deferrals.done("[XRPLife]: You are not whitelisted.")
                     end
@@ -27,6 +27,7 @@ AddEventHandler("playerConnecting", function(name, reason, deferrals)
                 end
             end
         else
+            print("Creating Player")
             XRPLifeDB["player"].CreatePlayer(src, function(createresults)
                 if XRPLifeConfig["admin"].whitelistActive then
                     deferrals.done("[XRPLife]: Whitelist active please rejoin the server.")
