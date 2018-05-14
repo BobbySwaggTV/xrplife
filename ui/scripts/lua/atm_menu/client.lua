@@ -11,7 +11,7 @@ AddEventHandler("XRPLife_ATMMenu:OpenMenu", function(name, balance)
     })
 end)
 
-RegisterNUICallback("closeatm", function(cb)
+RegisterNUICallback("closeatm", function(data, cb)
     SetNuiFocus(false, false)
     local pedPos = GetEntityCoords(GetPlayerPed(PlayerId()), false)
     local pedHead = GetEntityHeading(GetPlayerPed(PlayerId()))

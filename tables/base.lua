@@ -10,3 +10,7 @@ XRPLifeTables["players"].methods = {}
 XRPLifeTables["characters"] = {}
 XRPLifeTables["characters"].list = {}
 XRPLifeTables["characters"].methods = {}
+
+XRPLifeTables["vehicles"] = {}
+XRPLifeTables["vehicles"].list = {}
+XRPLifeTables["vehicles"].methods = {}

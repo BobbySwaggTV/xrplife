@@ -2,15 +2,18 @@ const ATMMenu = new Vue({
     el: "#ATM_Menu",
 
     data: {
+        
+        // Important Data
         resource_name: "xrplife",
 
-        // Variables
+        // Booleans
         showMenu: false,
         loading: false,
 
         // Rules
         inputRules: [
             (v) => !!v || "Input invalid",
+            (v) => !!v && RegExp("^(0|[1-9][0-9]*)$").test(v) || "Not a number",
             (v) => !!v && v >= 1 || "Input must be greater than 0",
             (v) => !!v && v[0] != 0 || "Input must not begin with a 0"
         ],

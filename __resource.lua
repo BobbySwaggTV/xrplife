@@ -51,7 +51,6 @@ server_script "config/server.lua"
 server_script "config/admin.lua"
 server_script "config/character.lua"
 server_script "config/database.lua"
-server_script "config/player.lua"
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 -----[[ TABLE FILES ]]-----
@@ -72,12 +71,14 @@ server_script "database/clothing.lua"
 -----[[ SERVER SCRIPTS ]]-----
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- Framework Scripts --
+--[[ Framework Scripts ]]--
 server_script "start.lua"
-server_script "chatHandler.lua"
-server_script "commandHandler.lua"
 
--- UI Scripts --
+--[[ Chat ]]--
+server_script "scripts/chat/server.lua"
+server_script "scripts/chat/commands.lua"
+
+--[[ UI Scripts ]]--
 server_script "ui/scripts/lua/character_menu/server.lua"
 server_script "ui/scripts/lua/atm_menu/server.lua"
 
@@ -85,11 +86,13 @@ server_script "ui/scripts/lua/atm_menu/server.lua"
 -----[[ CLIENT SCRIPTS ]]-----
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- Framework Scripts --
+--[[ Framework Scripts ]]--
 client_script "fivem.lua"
 
+--[[ Chat ]]--
+client_script "scripts/chat/client.lua"
 
--- UI Scripts --
+--[[ UI Scripts ]]--
 client_script "ui/scripts/lua/character_menu/client.lua"
 client_script "ui/scripts/lua/character_menu/skycam.lua"
 client_script "ui/scripts/lua/atm_menu/client.lua"

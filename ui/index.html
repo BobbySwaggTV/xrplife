@@ -5,10 +5,11 @@
         <link rel="stylesheet" href="./libraries/css/vuetify.css">
         <link rel="stylesheet" href="./css/charactermenu.css">
         <link rel="stylesheet" href="./css/atmmenu.css">
+        <link rel="stylesheet" href="./css/adminmenu.css">
 
         <style>
             html {
-                background-color: transparent !important; /*  */
+                background-color: gray; /* transparent !important */
                 overflow-x: hidden;
                 overflow-y: hidden;
                 font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -165,6 +166,21 @@
             </v-content>
         </v-app>
 
+        <v-app id="Admin_Menu" v-show="showMenu">
+            <v-content>
+                <div id="Admin_Menu_Base">
+                    <div id="Admin_Menu_Header">
+                        <v-icon dark x-large left>gavel</v-icon>
+                        Moderation Menu
+                        <v-btn color="red" slot="activator" absolute right top fab dark small @click=""><v-icon>clear</v-icon></v-btn>
+                    </div>
+                    <div id="Admin_Menu_Body">
+
+                    </div>
+                </div>
+            </v-content>
+        </v-app>
+
         <script src="./libraries/js/axios.min.js"></script>
         <script src="./libraries/js/vue.min.js"></script>
         <script src="./libraries/js/vuetify.js"></script>
@@ -172,5 +188,6 @@
         <script src="./scripts/js/listener.js"></script>
         <script src="./scripts/js/charactermenu.js"></script>
         <script src="./scripts/js/atmmenu.js"></script>
+        <script src="./scripts/js/adminmenu.js"></script>
     </body>
 </html>

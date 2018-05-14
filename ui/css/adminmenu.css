@@ -1,0 +1,28 @@
+#Admin_Menu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent !important;
+}
+
+#Admin_Menu_Base {
+    position: absolute;
+    width: 950px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#Admin_Menu_Header {
+    background-color: black;
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#Admin_Menu_Body {
+    max-height: 480px;
+}

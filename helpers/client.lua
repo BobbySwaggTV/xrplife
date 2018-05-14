@@ -15,4 +15,4 @@ XRPLifeClient.Helpers.DebugMessage = function(message)
     print(tostring("[XRPLife Debug]: " .. message))
 end
 
-XRPLifeClient.Helpers.DebugMessage("Helpers - client.lua = Loaded")
+XRPLifeClient.Helpers.DebugMessage("Helpers - client.lua Loaded")
