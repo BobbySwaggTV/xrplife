@@ -1,3 +1,6 @@
+---------------------------------------------------------------------------
+-- Gets the player information
+---------------------------------------------------------------------------
 XRPLifeDB["player"].GetPlayer = function(id, callback)
     exports["externalsql"]:DBAsyncQuery({
         string = "SELECT * FROM players WHERE `identifier` = :identifier", 
@@ -9,6 +12,9 @@ XRPLifeDB["player"].GetPlayer = function(id, callback)
     end)
 end
 
+---------------------------------------------------------------------------
+-- Creates a player
+---------------------------------------------------------------------------
 XRPLifeDB["player"].CreatePlayer = function(id, callback)
     exports["externalsql"]:DBAsyncQuery({
         string = "INSERT INTO players SET `identifier` = :identifier, `name` = :name, `rank` = :rank, `banned_data` = :banned_data, `whitelisted` = :whitelisted",
@@ -24,6 +30,9 @@ XRPLifeDB["player"].CreatePlayer = function(id, callback)
     end)
 end
 
+---------------------------------------------------------------------------
+-- Updates the players name
+---------------------------------------------------------------------------
 XRPLifeDB["player"].UpdatePlayerName = function(id, callback)
     exports["externalsql"]:DBAsyncQuery({
         string = "UPDATE players SET `name` = :name WHERE `identifier` = :identifier",
@@ -36,6 +45,9 @@ XRPLifeDB["player"].UpdatePlayerName = function(id, callback)
     end)
 end
 
+---------------------------------------------------------------------------
+-- Updates player rank [Created for the console commands]
+---------------------------------------------------------------------------
 XRPLifeDB["player"].ConsoleUpdatePlayerRank = function(identifier, rank, callback)
     local rankAvailable = false
     for a = 1, #XRPLifeConfig["admin"].Ranks do
@@ -63,6 +75,9 @@ XRPLifeDB["player"].ConsoleUpdatePlayerRank = function(identifier, rank, callbac
     end
 end
 
+---------------------------------------------------------------------------
+-- Updates players whitelist status [Created for the console commands]
+---------------------------------------------------------------------------
 XRPLifeDB["player"].ConsoleUpdatePlayerWhitelisted = function(identifier, whitelisted, callback)
     print(whitelisted)
     local status = tonumber(whitelisted)
@@ -85,6 +100,4 @@ XRPLifeDB["player"].ConsoleUpdatePlayerWhitelisted = function(identifier, whitel
     end
 end
 
-if XRPLifeConfig["server"].debugMode then
-    XRPLifeServer.Helpers.DebugMessage("Database - player.lua Loaded")
-end
+XRPLifeServer.Helpers.DebugMessage("Database - player.lua Loaded")

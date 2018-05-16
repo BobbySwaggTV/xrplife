@@ -1,3 +1,6 @@
+---------------------------------------------------------------------------
+-- Adds player to server table
+---------------------------------------------------------------------------
 XRPLifeTables["players"].methods.AddPlayer = function(src, callback)
     XRPLifeDB["player"].GetPlayer(src, function(results)
         table.insert(XRPLifeTables["players"].list, {
@@ -14,6 +17,9 @@ XRPLifeTables["players"].methods.AddPlayer = function(src, callback)
     end)
 end
 
+---------------------------------------------------------------------------
+-- Remove player from server table
+---------------------------------------------------------------------------
 XRPLifeTables["players"].methods.RemovePlayer = function(src)
     for a = 1, #XRPLifeTables["players"].list do
         if XRPLifeTables["players"].list[a].src == src then
@@ -27,6 +33,9 @@ XRPLifeTables["players"].methods.RemovePlayer = function(src)
     end
 end
 
+---------------------------------------------------------------------------
+-- Gets player from server table
+---------------------------------------------------------------------------
 XRPLifeTables["players"].methods.GetPlayer = function(src, callback)
     local found = {}
     for a = 1, #XRPLifeTables["players"].list do
@@ -41,6 +50,9 @@ XRPLifeTables["players"].methods.GetPlayer = function(src, callback)
     callback(found)
 end
 
+---------------------------------------------------------------------------
+-- Updates player rank in server table
+---------------------------------------------------------------------------
 XRPLifeTables["players"].methods.UpdatePlayerRank = function(src, newRank, callback)
     for a = 1, #XRPLifeTables["players"].list do
         print(tostring(json.encode(XRPLifeTables["players"].list[a])))

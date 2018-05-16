@@ -1,6 +1,9 @@
 XRPLifeServer = {}
 XRPLifeServer.Helpers = {}
 
+---------------------------------------------------------------------------
+-- Finds a players certain identifier
+---------------------------------------------------------------------------
 XRPLifeServer.Helpers.PlayerIdentifier = function(type, id)
     local identifiers = {}
     local numIdentifiers = GetNumPlayerIdentifiers(id)
@@ -17,10 +20,16 @@ XRPLifeServer.Helpers.PlayerIdentifier = function(type, id)
     return false
 end
 
+---------------------------------------------------------------------------
+-- Debug Message
+---------------------------------------------------------------------------
 XRPLifeServer.Helpers.DebugMessage = function(message)
     print(tostring("[XRPLife Debug]: " .. message))
 end
 
+---------------------------------------------------------------------------
+-- Stringsplit
+---------------------------------------------------------------------------
 XRPLifeServer.Helpers.Stringsplit = function(inputstr, sep)
     if sep == nil then
         sep = "%s"

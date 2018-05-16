@@ -1,9 +1,13 @@
-// Event Listener
+///////////////////////////////////////////////////////////////////////////
+// Waits for events from the players client
+///////////////////////////////////////////////////////////////////////////
 document.onreadystatechange = () => {
     if (document.readyState === "complete") {
         window.addEventListener('message', function(event) {
 
+            ///////////////////////////////////////////////////////////////////////////
             // Character Menu
+            ///////////////////////////////////////////////////////////////////////////
             if (event.data.type == "enable_character_menu") {
 
                 var new_chars = SortCharacters(event.data.chars);
@@ -41,7 +45,9 @@ document.onreadystatechange = () => {
 
             }
 
+            ///////////////////////////////////////////////////////////////////////////
             // ATM Menu
+            ///////////////////////////////////////////////////////////////////////////
             if (event.data.type == "open_atm_menu") {
                 ATMMenu.OpenMenu(event.data.name, event.data.balance);
             }
@@ -50,6 +56,9 @@ document.onreadystatechange = () => {
     }
 }
 
+///////////////////////////////////////////////////////////////////////////
+// Sorts characters recieved from client and sorts to correct format
+///////////////////////////////////////////////////////////////////////////
 function SortCharacters(char_list) {
     var new_chars = [];
     for (var a = 0; a < char_list.length; a++) {

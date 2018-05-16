@@ -1,3 +1,6 @@
+---------------------------------------------------------------------------
+-- Client event to give clients a message based on distance
+---------------------------------------------------------------------------
 RegisterNetEvent("XRPLife_Chat:LocalChatMessage")
 AddEventHandler("XRPLife_Chat:LocalChatMessage", function(pDistance, senderdata)
     local senderPlayer = GetPlayerFromServerId(senderdata.id)
@@ -10,7 +13,9 @@ AddEventHandler("XRPLife_Chat:LocalChatMessage", function(pDistance, senderdata)
     end
 end)
 
--- Placeholder
+---------------------------------------------------------------------------
+-- REMOVE THIS AS THIS IS JUST A PLACEHOLDER
+---------------------------------------------------------------------------
 RegisterNetEvent("XRPLife_Chat:RespawnPlayer")
 AddEventHandler("XRPLife_Chat:RespawnPlayer", function()
     exports["spawnmanager"]:forceRespawn()

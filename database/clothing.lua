@@ -16,3 +16,5 @@ XRPLifeDB["clothing"].GetCharacterClothing = function(charid, callback)
         callback(results)
     end)
 end
+
+XRPLifeServer.Helpers.DebugMessage("Database - clothing.lua Loaded")

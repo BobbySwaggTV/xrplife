@@ -1,3 +1,6 @@
+---------------------------------------------------------------------------
+-- Gets character information to send to ATM menu
+---------------------------------------------------------------------------
 RegisterServerEvent("XRPLife_ATMMenu:RequestATMInfo")
 AddEventHandler("XRPLife_ATMMenu:RequestATMInfo", function()
     local src = source

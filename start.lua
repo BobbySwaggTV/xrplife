@@ -1,3 +1,6 @@
+---------------------------------------------------------------------------
+-- Handles players connecting to the server
+---------------------------------------------------------------------------
 AddEventHandler("playerConnecting", function(name, reason, deferrals)
     local src = source
     deferrals.defer()
@@ -39,6 +42,9 @@ AddEventHandler("playerConnecting", function(name, reason, deferrals)
     end)
 end)
 
+---------------------------------------------------------------------------
+-- Handles getting the playes started
+---------------------------------------------------------------------------
 RegisterServerEvent("XRPLife_Start")
 AddEventHandler("XRPLife_Start", function()
     local src = source
@@ -47,6 +53,9 @@ AddEventHandler("XRPLife_Start", function()
     end)
 end)
 
+---------------------------------------------------------------------------
+-- Cleans out the players data from the server tables
+---------------------------------------------------------------------------
 AddEventHandler("playerDropped", function()
     local src = source
     XRPLifeTables["players"].methods.RemovePlayer(src)

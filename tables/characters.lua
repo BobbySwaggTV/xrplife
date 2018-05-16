@@ -1,3 +1,6 @@
+---------------------------------------------------------------------------
+-- Adds character to server table
+---------------------------------------------------------------------------
 XRPLifeTables["characters"].methods.AddCharacter = function(src, char_data, callback)
     table.insert(XRPLifeTables["characters"].list, {
         src = src,
@@ -14,6 +17,9 @@ XRPLifeTables["characters"].methods.AddCharacter = function(src, char_data, call
     callback()
 end
 
+---------------------------------------------------------------------------
+-- Removes character from server table
+---------------------------------------------------------------------------
 XRPLifeTables["characters"].methods.RemoveCharacter = function(src, callback)
     for a = 1, #XRPLifeTables["characters"].list do
         if XRPLifeTables["characters"].list[a].src == src then
@@ -27,6 +33,9 @@ XRPLifeTables["characters"].methods.RemoveCharacter = function(src, callback)
     callback()
 end
 
+---------------------------------------------------------------------------
+-- Gets character from server table
+---------------------------------------------------------------------------
 XRPLifeTables["characters"].methods.GetCharacter = function(src, callback)
     for a = 1, #XRPLifeTables["characters"].list do
         if XRPLifeTables["characters"].list[a].src == src then

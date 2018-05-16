@@ -1,3 +1,6 @@
+/*---------------------------------------------------------------------------
+-- Vuetify Base
+---------------------------------------------------------------------------*/
 #Character_Menu {
     position: absolute;
     width: 100%;
@@ -5,6 +8,9 @@
     background-color: transparent !important;
 }
 
+/*---------------------------------------------------------------------------
+-- Character Menu Base
+---------------------------------------------------------------------------*/
 #Character_Menu_Characters {
     position: absolute;
     width: 960px;
@@ -13,6 +19,9 @@
     transform: translate(-50%, -50%);
 }
 
+/*---------------------------------------------------------------------------
+-- Character Menu Header
+---------------------------------------------------------------------------*/
 #Character_Menu_Characters_Header {
     font-size: 20px;
     text-align: center;
@@ -23,6 +32,9 @@
     border-top-right-radius: 5px;
 }
 
+/*---------------------------------------------------------------------------
+-- Character Menu Body
+---------------------------------------------------------------------------*/
 #Character_Menu_Characters_Body {
     padding: 10px;
     background-color: white;
@@ -30,6 +42,9 @@
     overflow-y: auto;
 }
 
+/*---------------------------------------------------------------------------
+-- Character Creator Menu Header
+---------------------------------------------------------------------------*/
 #Character_Menu_Creator_Header {
     padding: 20px;
     text-align: center;
@@ -38,6 +53,9 @@
     font-size: 20px;
 }
 
+/*---------------------------------------------------------------------------
+-- Character Creator Menu Body
+---------------------------------------------------------------------------*/
 #Character_Menu_Creator_Body {
     background-color: white;
     padding: 10px;
@@ -45,6 +63,9 @@
     overflow-y: auto;
 }
 
+/*---------------------------------------------------------------------------
+-- Character Creator Menu calender placement
+---------------------------------------------------------------------------*/
 #Character_Menu_Creator_Calender {
     position: relative;
     left: 50%;

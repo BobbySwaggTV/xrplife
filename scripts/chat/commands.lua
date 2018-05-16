@@ -1,11 +1,14 @@
---[[ Regular Commands ]]--
--- Placeholder
+---------------------------------------------------------------------------
+-- Regular Commands
+---------------------------------------------------------------------------
 RegisterCommand("respawn", function(source, args, raw)
     local src = source
     TriggerClientEvent("XRPLife_Chat:RespawnPlayer", src)
 end, false)
 
---[[ Console Commands ]]--
+---------------------------------------------------------------------------
+-- Console Commands
+---------------------------------------------------------------------------
 RegisterCommand("console_ChangeRank", function(source, args, raw)
     if source == 0 then
         local identifier = args[1]

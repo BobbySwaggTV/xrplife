@@ -1,6 +1,9 @@
 Interface = {};
 Interface.Helpers = {}
 
+///////////////////////////////////////////////////////////////////////////
+// Fixes players character name by capitalizing the first letters in their name
+///////////////////////////////////////////////////////////////////////////
 Interface.Helpers.FixName = (name) => {
     var newName = ""
     for (var a = 0; a < name.length; a++) {
@@ -14,6 +17,9 @@ Interface.Helpers.FixName = (name) => {
     return newName
 };
 
+///////////////////////////////////////////////////////////////////////////
+// Gets the age from a dob string
+///////////////////////////////////////////////////////////////////////////
 Interface.Helpers.GetAge = (string) => {
     var today = new Date();
     var birthDate = new Date(string);

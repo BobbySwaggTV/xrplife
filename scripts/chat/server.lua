@@ -1,3 +1,6 @@
+---------------------------------------------------------------------------
+-- Handles regular chat message
+---------------------------------------------------------------------------
 AddEventHandler("chatMessage", function(source, color, message)
     CancelEvent()
     local src = source

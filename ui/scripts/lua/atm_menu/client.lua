@@ -1,6 +1,9 @@
 local atm_models = {"prop_fleeca_atm", "prop_atm_01", "prop_atm_02", "prop_atm_03"}
 local atmOpen = false
 
+---------------------------------------------------------------------------
+-- Triggers ATM menu to open
+---------------------------------------------------------------------------
 RegisterNetEvent("XRPLife_ATMMenu:OpenMenu")
 AddEventHandler("XRPLife_ATMMenu:OpenMenu", function(name, balance)
     SetNuiFocus(true, true)
@@ -11,6 +14,9 @@ AddEventHandler("XRPLife_ATMMenu:OpenMenu", function(name, balance)
     })
 end)
 
+---------------------------------------------------------------------------
+-- Closes ATM menu and cancels animation
+---------------------------------------------------------------------------
 RegisterNUICallback("closeatm", function(data, cb)
     SetNuiFocus(false, false)
     local pedPos = GetEntityCoords(GetPlayerPed(PlayerId()), false)
@@ -22,6 +28,9 @@ RegisterNUICallback("closeatm", function(data, cb)
     cb("ok")
 end)
 
+---------------------------------------------------------------------------
+-- Handles distance to atm models with offset position
+---------------------------------------------------------------------------
 Citizen.CreateThread(function()
     while true do
         local ped = GetPlayerPed(PlayerId())

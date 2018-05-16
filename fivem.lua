@@ -1,11 +1,15 @@
 local firstSpawn = true
 
+---------------------------------------------------------------------------
 -- Client loads into the server
+---------------------------------------------------------------------------
 AddEventHandler("onClientMapStart", function()
     TriggerServerEvent("XRPLife_Start")
 end)
 
--- One Time Call
+---------------------------------------------------------------------------
+-- Calls one time to disable things on spawn
+---------------------------------------------------------------------------
 Citizen.CreateThread(function()
     while true do
         if firstSpawn then
@@ -29,8 +33,9 @@ function DisableDispatch()
     end
 end
 
-
--- Every Tick Call
+---------------------------------------------------------------------------
+-- Removes features that need to be called every tick
+---------------------------------------------------------------------------
 Citizen.CreateThread(function()
     while true do
         if not firstSpawn then
