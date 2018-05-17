@@ -9,7 +9,7 @@
 
         <style>
             html {
-                background-color: gray; /* transparent !important */
+                background-color: transparent !important; /* transparent !important */
                 overflow-x: hidden;
                 overflow-y: hidden;
                 font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -120,14 +120,10 @@
             <v-content>
                 <div id="ATM_Menu_Base">
                     <div id="ATM_Menu_Header">
-
                         <div id="ATM_Character_Information">
-
                             <div>Welcome, {{ character_name }}</div>
                             <div>Balance: ${{ account }}</div>
-                            
                         </div>
-
                         <v-icon dark x-large left>account_balance</v-icon>
                         XRPLife Banking
                         <v-btn color="red" slot="activator" absolute right top fab dark small @click="CloseMenu()"><v-icon>clear</v-icon></v-btn>
@@ -172,10 +168,76 @@
                     <div id="Admin_Menu_Header">
                         <v-icon dark x-large left>gavel</v-icon>
                         Moderation Menu
-                        <v-btn color="red" slot="activator" absolute right top fab dark small @click=""><v-icon>clear</v-icon></v-btn>
+                        <v-btn color="red" slot="activator" absolute right top fab dark small @click="CloseMenu()"><v-icon>clear</v-icon></v-btn>
                     </div>
                     <div id="Admin_Menu_Body">
 
+                        <v-toolbar color="black">
+                            <v-toolbar-items v-for="page in pages">
+                                <v-btn flat color="white" @click="ChangePage(page.page, page.perm)">{{ page.label }}</v-btn>
+                            </v-toolbar-items>
+                        </v-toolbar>
+
+                        <div id="Admin_Menu_Body_Container">
+                            <div v-show="currentPage == 'main'">
+                                <div><center><h2>Welcome to XRPLife's Moderation Page.</h2></center></div>
+                                <div><center><font color="red"><h3>--------------------<ul>PLEASE READ</ul>--------------------</h3> Please be careful what perms you give your staff. There are some things in this menu that can truly manage a player...</font></center></div>
+                            </div>
+                            <div v-show="currentPage == 'chat'">
+                                <v-container grid-list-xs>
+                                    <v-layout row>
+                                        <v-flex xs12>
+                                            <div id="Admin_Menu_Body_Chat_Box">
+                                                <div id="Admin_Menu_Body_Chat_Box_Message" v-for="message in AdminMessages">
+                                                    <div class="chatMessageName">
+                                                        [{{ message.rank }}] {{ message.name }}: 
+                                                    </div>
+                                                    <div class="chatMessage">
+                                                        {{ message.message }}
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </v-flex>
+                                        <v-flex xs1>
+                                            <v-layout row wrap>
+                                              <v-flex xs12>
+                                                <v-btn color="blue" dark small fab @click="ToggleChatNotifications()">
+                                                    <v-icon v-if="muteChatNotification == false">volume_up</v-icon>
+                                                    <v-icon v-if="muteChatNotification == true">volume_off</v-icon>
+                                                </v-btn>
+                                              </v-flex>
+                                            </v-layout>
+                                        </v-flex>
+                                    </v-layout>
+                                    <v-layout row>
+                                        <v-flex xs12>
+                                            <v-text-field flat append-icon="arrow_right" label="Message Here" v-model="adminMessage"></v-text-field>
+                                        </v-flex>
+                                        <v-flex xs3>
+                                            <v-btn color="blue" dark block large flat outline @click="SendChatMessage()">SEND MESSAGE</v-btn>
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </div>
+                            <div v-show="currentPage == 'kick'">
+                                Kick Page
+                            </div>
+                            <div v-show="currentPage == 'ban'">
+                                Ban Page
+                            </div>
+                            <div v-show="currentPage == 'white'">
+                                Whitelist Page
+                            </div>
+                            <div v-show="currentPage == 'ranks'">
+                                Change Ranks Page
+                            </div>
+
+                            <!-- Keep Below Menus -->
+                            <v-alert type="error" transition="slide-y-reverse-transition" v-model="showError" dismissible>
+                                {{ errorMessage }}
+                            </v-alert>
+                        </div>
                     </div>
                 </div>
             </v-content>

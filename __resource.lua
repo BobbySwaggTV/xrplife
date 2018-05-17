@@ -26,15 +26,20 @@ files {
     "ui/libraries/js/vuetify.js",
     "ui/libraries/css/vuetify.css",
 
+    -- Sounds
+    "ui/sounds/stairs.ogg",
+
     -- Javascript
     "ui/scripts/js/helpers.js",
     "ui/scripts/js/listener.js",
     "ui/scripts/js/charactermenu.js",
     "ui/scripts/js/atmmenu.js",
+    "ui/scripts/js/adminmenu.js",
 
     -- CSS
     "ui/css/charactermenu.css",
-    "ui/css/atmmenu.css"
+    "ui/css/atmmenu.css",
+    "ui/css/adminmenu.css"
 }
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -81,6 +86,7 @@ server_script "scripts/chat/commands.lua"
 --[[ UI Scripts ]]--
 server_script "ui/scripts/lua/character_menu/server.lua"
 server_script "ui/scripts/lua/atm_menu/server.lua"
+server_script "ui/scripts/lua/admin_menu/server.lua"
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 -----[[ CLIENT SCRIPTS ]]-----
@@ -96,3 +102,4 @@ client_script "scripts/chat/client.lua"
 client_script "ui/scripts/lua/character_menu/client.lua"
 client_script "ui/scripts/lua/character_menu/skycam.lua"
 client_script "ui/scripts/lua/atm_menu/client.lua"
+client_script "ui/scripts/lua/admin_menu/client.lua"

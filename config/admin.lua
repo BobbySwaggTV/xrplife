@@ -26,7 +26,7 @@ XRPLifeConfig["admin"].Ranks = {
     BypassRestriction = Ability to use permissions on ranks the same rank as them.
 --]]
 XRPLifeConfig["admin"].RankPerms = {
-    ["User"]      = {"Report"},
+    ["User"]      = {},
     ["Moderator"] = {"Menu", "Report", "Chat", "Freeze"},
     ["Admin"]     = {"Menu", "Report", "Chat", "Freeze", "Kick", "Ban", "Whitelisting", "ChangeRank"},
     ["Owner"]     = {"Menu", "Report", "Chat", "Freeze", "Kick", "Ban", "Whitelisting", "ChangeRank", "BypassRestriction"}

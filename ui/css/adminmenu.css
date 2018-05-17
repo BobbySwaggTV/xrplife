@@ -36,5 +36,43 @@
 -- Menu Body
 ---------------------------------------------------------------------------*/
 #Admin_Menu_Body {
-    max-height: 480px;
+    max-height: 500px;
+    overflow-y: auto;
+    background-color: white;
+}
+
+#Admin_Menu_Body_Container {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+/*---------------------------------------------------------------------------
+-- Menu Body Pages
+---------------------------------------------------------------------------*/
+#Admin_Menu_Body_Chat_Box {
+    width: 850px;
+    height: 270px;
+    background-color: rgba(63, 63, 63, 1.0);
+    max-height: 270px;
+    max-width: 850px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    padding: 10px;
+    font-size: 15px;
+}
+
+/*---------------------------------------------------------------------------
+-- CLASSES BELOW HERE
+---------------------------------------------------------------------------*/
+.chatMessageName {
+    float: left;
+    color: red;
+    margin-right: 3px;
+}
+
+.chatMessage {
+    float: left;
+    color: white;
 }

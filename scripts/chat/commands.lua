@@ -6,6 +6,27 @@ RegisterCommand("respawn", function(source, args, raw)
     TriggerClientEvent("XRPLife_Chat:RespawnPlayer", src)
 end, false)
 
+RegisterCommand("admin", function(source, args, raw)
+    local src = source
+    local player_list = GetPlayers()
+    local new_players = {}
+
+    for a = 1, #player_list do
+        table.insert(new_players, {serverid = player_list[a], name = GetPlayerName(player_list[a])})
+    end
+
+    XRPLifeTables["players"].methods.GetPlayer(src, function(player)
+        local rank = player.rank
+        local perms = XRPLifeConfig["admin"].RankPerms[rank]
+        for a = 1, #perms do
+            if perms[a] == "Menu" then
+                TriggerClientEvent("XRPLife_AdminMenu:OpenMenu", src, GetPlayerName(src), rank, perms, new_players)
+                return
+            end
+        end
+    end)
+end, false)
+
 ---------------------------------------------------------------------------
 -- Console Commands
 ---------------------------------------------------------------------------

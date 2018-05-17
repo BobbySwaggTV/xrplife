@@ -1,3 +1,4 @@
+XRPLifeConfig["server"].XRPLifeVersion = 1
 XRPLifeConfig["server"].checkXRPVersion = true
 XRPLifeConfig["server"].debugMode = true
 XRPLifeConfig["server"].localChat = false

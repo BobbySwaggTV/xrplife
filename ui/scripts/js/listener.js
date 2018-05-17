@@ -49,7 +49,22 @@ document.onreadystatechange = () => {
             // ATM Menu
             ///////////////////////////////////////////////////////////////////////////
             if (event.data.type == "open_atm_menu") {
+
                 ATMMenu.OpenMenu(event.data.name, event.data.balance);
+
+            }
+
+            ///////////////////////////////////////////////////////////////////////////
+            // Admin Menu
+            ///////////////////////////////////////////////////////////////////////////
+            if (event.data.type == "open_admin_menu") {
+
+                AdminMenu.OpenMenu(event.data.name, event.data.rank, event.data.perms, event.data.players);
+            
+            } else if (event.data.type == "pass_recieved_admin_message") {
+
+                AdminMenu.RecieveChatMessage(event.data.message_data, event.data.perms);
+
             }
 
         });
