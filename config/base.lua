@@ -7,3 +7,4 @@ XRPLifeConfig["server"] = {}
 XRPLifeConfig["character"] = {}
 XRPLifeConfig["player"] = {}
 XRPLifeConfig["admin"] = {}
+XRPLifeConfig["weather"] = {}

@@ -42,7 +42,7 @@ Citizen.CreateThread(function()
                 local atmOffset = GetOffsetFromEntityInWorldCoords(atm, 0.0, -0.7, 0.0)
                 local atmHeading = GetEntityHeading(atm)
                 local distance = Vdist(pedPos.x, pedPos.y, pedPos.z, atmOffset.x, atmOffset.y, atmOffset.z)
-                DrawMarker(1, atmOffset.x, atmOffset.y, atmOffset.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 255, 0, 0, 0.8, 0, 0, 0, 0, 0, 0, 0)
+                DrawMarker(29, atmOffset.x, atmOffset.y, atmOffset.z + 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 255, 0, 0, 0.8, 1, 0, 0, 1, 0, 0, 0)
                 
                 if distance <= 1.2 then
                     XRPLifeClient.Helpers.TopLeftNotification("Press ~INPUT_PICKUP~ to use the ATM")

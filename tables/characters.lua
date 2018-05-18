@@ -24,6 +24,7 @@ XRPLifeTables["characters"].methods.RemoveCharacter = function(src, callback)
     for a = 1, #XRPLifeTables["characters"].list do
         if XRPLifeTables["characters"].list[a].src == src then
             table.remove(XRPLifeTables["characters"].list, a)
+            break
         end
     end
     if XRPLifeConfig["server"].debugMode then
@@ -44,6 +45,7 @@ XRPLifeTables["characters"].methods.GetCharacter = function(src, callback)
                 XRPLifeServer.Helpers.DebugMessage(tostring(json.encode(XRPLifeTables["characters"].list[a])))
             end
             callback(XRPLifeTables["characters"].list[a])
+            break
         end
     end
 end

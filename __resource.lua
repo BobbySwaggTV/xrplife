@@ -56,6 +56,7 @@ server_script "config/server.lua"
 server_script "config/admin.lua"
 server_script "config/character.lua"
 server_script "config/database.lua"
+server_script "config/weather.lua"
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 -----[[ TABLE FILES ]]-----
@@ -83,6 +84,12 @@ server_script "start.lua"
 server_script "scripts/chat/server.lua"
 server_script "scripts/chat/commands.lua"
 
+--[[ Weather Sync ]]--
+server_script "scripts/weathersync/server.lua"
+
+--[[ Time Sync ]]--
+server_script "scripts/timesync/server.lua"
+
 --[[ UI Scripts ]]--
 server_script "ui/scripts/lua/character_menu/server.lua"
 server_script "ui/scripts/lua/atm_menu/server.lua"
@@ -97,6 +104,12 @@ client_script "fivem.lua"
 
 --[[ Chat ]]--
 client_script "scripts/chat/client.lua"
+
+--[[ Weather Sync ]]--
+client_script "scripts/weathersync/client.lua"
+
+--[[ Time Sync ]]--
+client_script "scripts/timesync/client.lua"
 
 --[[ UI Scripts ]]--
 client_script "ui/scripts/lua/character_menu/client.lua"

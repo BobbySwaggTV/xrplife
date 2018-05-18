@@ -5,6 +5,8 @@ local firstSpawn = true
 ---------------------------------------------------------------------------
 AddEventHandler("onClientMapStart", function()
     TriggerServerEvent("XRPLife_Start")
+    TriggerServerEvent("XRPLife_Weather:ConnectionSetWeather")
+    TriggerServerEvent("XRPLife_Time:ConnectionSetTime")
 end)
 
 ---------------------------------------------------------------------------
@@ -41,6 +43,8 @@ Citizen.CreateThread(function()
         if not firstSpawn then
             RemoveWantedLevel()
             DisableHealthRegen()
+            EnablePVP()
+            DisabledControls()
         end
         Citizen.Wait(0)
     end
@@ -55,4 +59,13 @@ end
 
 function DisableHealthRegen()
     SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
+end
+
+function EnablePVP()
+    SetCanAttackFriendly(GetPlayerPed(PlayerId()), true, false)
+    NetworkSetFriendlyFireOption(true)
+end
+
+function DisabledControls()
+    DisableControlAction(1, 37, true) -- TAB
 end

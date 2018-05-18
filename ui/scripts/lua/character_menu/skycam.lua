@@ -35,7 +35,6 @@ Citizen.CreateThread(function()
     while true do
         if startCameraRotations then
             angle = angle - angleInc
-            print(angle)
             local xOffset = math.cos(angle) * radius
             local yOffset = math.cos(angle) * radius
             local zOffset = math.cos(angle) * radius
