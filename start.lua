@@ -76,6 +76,15 @@ AddEventHandler("playerConnecting", function(name, reason, deferrals)
 end)
 
 ---------------------------------------------------------------------------
+-- Pass Settings From Server To Client
+---------------------------------------------------------------------------
+RegisterServerEvent("XRPLife_Settings:RequestConfigSettings")
+AddEventHandler("XRPLife_Settings:RequestConfigSettings", function()
+    local src = source
+    TriggerClientEvent("XRPLife_DebugClientMode", src, XRPLifeConfig["server"].debugMode)
+end)
+
+---------------------------------------------------------------------------
 -- Handles getting the playes started
 ---------------------------------------------------------------------------
 RegisterServerEvent("XRPLife_Start")

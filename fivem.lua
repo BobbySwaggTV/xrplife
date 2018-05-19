@@ -15,7 +15,10 @@ end)
 Citizen.CreateThread(function()
     while true do
         if firstSpawn then
+            TriggerServerEvent("XRPLife_Settings:RequestConfigSettings")
+
             Wait(3000)
+            
             DisableAutoRespawn()
             DisableDispatch()
             firstSpawn = false

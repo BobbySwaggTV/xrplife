@@ -111,6 +111,9 @@ client_script "scripts/weathersync/client.lua"
 --[[ Time Sync ]]--
 client_script "scripts/timesync/client.lua"
 
+--[[ Debug ]]--
+client_script "scripts/debug/client.lua"
+
 --[[ UI Scripts ]]--
 client_script "ui/scripts/lua/character_menu/client.lua"
 client_script "ui/scripts/lua/character_menu/skycam.lua"

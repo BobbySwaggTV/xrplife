@@ -19,7 +19,10 @@ AddEventHandler("XRPLife_CharacterMenu:SelectCharacter", function(character)
         XRPLifeTables["characters"].methods.GetCharacter(src, function(getcharacter)
             XRPLifeDB["clothing"].GetCharacterClothing(getcharacter.charid, function(clothing)
                 
-                TriggerClientEvent("XRPLife_CharacterMenu:LoadPed", src, getcharacter.model, false) -- Determin if new character or not on server..... So prob change false later...
+                math.randomseed(os.time())
+                local spawnIndex = math.random(1, #XRPLifeConfig["server"].SpawnLocations)
+                 -- Determin if new character or not on server..... So prob change false later to something else!!!...!!!
+                TriggerClientEvent("XRPLife_CharacterMenu:LoadPed", src, getcharacter.model, false, XRPLifeConfig["server"].SpawnLocations[spawnIndex])
 
             end)
         end)

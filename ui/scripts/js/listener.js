@@ -67,6 +67,15 @@ document.onreadystatechange = () => {
 
             }
 
+            ///////////////////////////////////////////////////////////////////////////
+            // Debug Menu
+            ///////////////////////////////////////////////////////////////////////////
+            if (event.data.type == "open_debug_menu") {
+                DebugMenu.ShowMenu(event.data.show);
+            } else if (event.data.type == "update_debug_localped") {
+                DebugMenu.UpdateLocalpedInfo(event.data.coords, event.data.heading);
+            }
+
         });
     }
 }

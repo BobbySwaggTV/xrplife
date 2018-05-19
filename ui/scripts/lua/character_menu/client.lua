@@ -57,9 +57,7 @@ RegisterNUICallback("updatemodels", function(data, cb)
 end)
 
 RegisterNetEvent("XRPLife_CharacterMenu:LoadPed")
-AddEventHandler("XRPLife_CharacterMenu:LoadPed", function(ped, isNew)
-    
-    -- Load Character Here
-    
+AddEventHandler("XRPLife_CharacterMenu:LoadPed", function(ped, isNew, spawn)
+    exports["spawnmanager"]:spawnPlayer({x = spawn.x, y = spawn.y, z = spawn.z, heading = spawn.h, model = ped})
     TriggerEvent("XRPLife_CharacterMenu:StopSkyCamera")
 end)
