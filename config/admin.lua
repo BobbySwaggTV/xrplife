@@ -1,7 +1,7 @@
 ---------------------------------------------------------------------------
 -- Controls if the server will check whitelist or not
 ---------------------------------------------------------------------------
-XRPLifeConfig["admin"].whitelistActive = false
+XRPLifeConfig["admin"].whitelistActive = true
 
 -- Ranks list from lowest to highest.
 XRPLifeConfig["admin"].Ranks = {

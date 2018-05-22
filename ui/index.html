@@ -179,10 +179,12 @@
                         </v-toolbar>
 
                         <div id="Admin_Menu_Body_Container">
+
                             <div v-show="currentPage == 'main'">
                                 <div><center><h2>Welcome to XRPLife's Moderation Page.</h2></center></div>
                                 <div><center><font color="red"><h3>--------------------<ul>PLEASE READ</ul>--------------------</h3> Please be careful what perms you give your staff. There are some things in this menu that can truly manage a player...</font></center></div>
                             </div>
+
                             <div v-show="currentPage == 'chat'">
                                 <v-container grid-list-xs>
                                     <v-layout row>
@@ -220,15 +222,42 @@
                                     </v-layout>
                                 </v-container>
                             </div>
+
                             <div v-show="currentPage == 'kick'">
-                                Kick Page
+
+                                <v-container grid-list-lg>
+                                    <v-layout row>
+                                        <v-flex xs4>
+                                            <div id="Admin_Menu_Body_Kick_Playerlist">
+                                                <v-btn color="black" dark block v-for="(player, index) in players" @click="SetSelectedKickPlayer(index)">{{ player.serverid }}<br>{{ player.name }}</v-btn>
+                                            </div>
+                                        </v-flex>
+                                        <v-flex xs8>
+                                            <div id="Admin_Menu_Body_Kick_Chosen" v-if="ChosenPlayerKick.serverid != null">Player: {{ChosenPlayerKick.serverid}} | {{ ChosenPlayerKick.name }}</div>
+                                            <v-text-field label="Reason" v-model="ChosenKickReason"></v-text-field>
+                                            <v-layout row>
+                                                <v-flex xs6>
+                                                    <v-btn color="green" dark block @click="SetKickPlayer()">Kick</v-btn>
+                                                </v-flex>
+                                                <v-flex xs6>
+                                                    <v-btn color="red" dark block @click="ClearKickMenu()">Clear</v-btn>
+                                                </v-flex>
+                                            </v-layout>
+
+                                        </v-flex>
+                                    </v-layout>
+                                </v-container>
+
                             </div>
+
                             <div v-show="currentPage == 'ban'">
                                 Ban Page
                             </div>
+
                             <div v-show="currentPage == 'white'">
                                 Whitelist Page
                             </div>
+                            
                             <div v-show="currentPage == 'ranks'">
                                 Change Ranks Page
                             </div>

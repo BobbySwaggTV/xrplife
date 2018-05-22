@@ -63,6 +63,21 @@
     font-size: 15px;
 }
 
+#Admin_Menu_Body_Kick_Playerlist {
+    max-height: 180px;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+}
+
+#Admin_Menu_Body_Kick_Chosen {
+    text-align: center;
+    font-size: 20px;
+}
+
 /*---------------------------------------------------------------------------
 -- CLASSES BELOW HERE
 ---------------------------------------------------------------------------*/

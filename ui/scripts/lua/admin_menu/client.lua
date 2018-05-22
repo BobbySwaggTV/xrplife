@@ -41,3 +41,22 @@ AddEventHandler("XRPLife_AdminMenu:PassMessageData", function(data, perms)
         perms = perms
     })
 end)
+
+---------------------------------------------------------------------------
+-- Pass Admin Kick Request
+---------------------------------------------------------------------------
+RegisterNUICallback("recievekickrequest", function(data, cb)
+    TriggerServerEvent("XRPLife_AdminMenu:TriggerKickClient", data.player, data.reason)
+    cb("ok")
+end)
+
+---------------------------------------------------------------------------
+-- Throw Error To Admin Menu
+---------------------------------------------------------------------------
+RegisterNetEvent("XRPLife_AdminMenu:ThrowMenuError")
+AddEventHandler("XRPLife_AdminMenu:ThrowMenuError", function(error)
+    SendNUIMessage({
+        type = "pass_admin_error",
+        error = error
+    })
+end)

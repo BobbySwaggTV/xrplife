@@ -22,7 +22,7 @@ XRPLifeDB["player"].CreatePlayer = function(id, callback)
             identifier = XRPLifeServer.Helpers.PlayerIdentifier(XRPLifeConfig["database"].identifier, id),
             name = GetPlayerName(id),
             rank = XRPLifeConfig["admin"].Ranks[1],
-            banned_data = json.encode({banned = false, banner = "", reason = ""}),
+            banned_data = json.encode({banned = false, banner = "", reason = "", time = 0}), -- Change back to nil for time
             whitelisted = false
         }
     }, function(results)
@@ -39,6 +39,21 @@ XRPLifeDB["player"].UpdatePlayerName = function(id, callback)
         data = {
             identifier = XRPLifeServer.Helpers.PlayerIdentifier(XRPLifeConfig["database"].identifier, id),
             name = GetPlayerName(id)
+        }
+    }, function(results)
+        callback(results)
+    end)
+end
+
+---------------------------------------------------------------------------
+-- Updates the players ban
+---------------------------------------------------------------------------
+XRPLifeDB["player"].UpdatePlayerBan = function(id, banData, callback)
+    exports["externalsql"]:DBAsyncQuery({
+        string = "UPDATE players SET `banned_data` = :data WHERE `identifier` = :identifier",
+        data = {
+            identifier = XRPLifeServer.Helpers.PlayerIdentifier(XRPLifeConfig["database"].identifier, id),
+            data = banData
         }
     }, function(results)
         callback(results)

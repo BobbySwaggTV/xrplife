@@ -1,12 +1,12 @@
 ---------------------------------------------------------------------------
 -- Decides if you want version checker to notify you of XRPLife updates
 ---------------------------------------------------------------------------
-XRPLifeConfig["server"].checkXRPVersion = true
+XRPLifeConfig["server"].checkXRPVersion = false
 
 ---------------------------------------------------------------------------
 -- Allows you to see some debug comments when functions are triggered etc..
 ---------------------------------------------------------------------------
-XRPLifeConfig["server"].debugMode = false
+XRPLifeConfig["server"].debugMode = true
 
 ---------------------------------------------------------------------------
 -- Lets to toggle on XRPLife's local chat feature for chat.

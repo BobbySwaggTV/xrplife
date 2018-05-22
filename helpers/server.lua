@@ -42,4 +42,45 @@ XRPLifeServer.Helpers.Stringsplit = function(inputstr, sep)
     return t
 end
 
+---------------------------------------------------------------------------
+-- Checks players rank position compared to another
+---------------------------------------------------------------------------
+XRPLifeServer.Helpers.CheckPlayerRankPosition = function(RankOne, RankTwo)
+    local ranks = XRPLifeConfig["admin"].Ranks
+    local OnePos = 0
+    local TwoPos = 0
+    for a = 1, #ranks do
+        if RankOne == ranks[a] then
+            OnePos = a
+            break
+        end
+    end
+    for b = 1, #ranks do
+        if RankTwo == ranks[b] then
+            TwoPos = b
+            break
+        end
+    end
+    if OnePos == TwoPos then
+        return "equal"
+    elseif OnePos > TwoPos then
+        return "greater"
+    elseif OnePos < TwoPos then
+        return "less"
+    end
+end
+
+---------------------------------------------------------------------------
+-- Checks if players perm matches
+---------------------------------------------------------------------------
+XRPLifeServer.Helpers.CheckPlayerRankPerm = function(Rank, Perm)
+    local perms = XRPLifeConfig["admin"].RankPerms[Rank]
+    for a = 1 , #perms do
+        if perms[a] == Perm then
+            return true
+        end
+    end
+    return false
+end
+
 XRPLifeServer.Helpers.DebugMessage("Helpers - server.lua Loaded")

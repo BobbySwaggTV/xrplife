@@ -57,6 +57,7 @@ server_script "config/admin.lua"
 server_script "config/character.lua"
 server_script "config/database.lua"
 server_script "config/weather.lua"
+server_script "config/time.lua"
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 -----[[ TABLE FILES ]]-----

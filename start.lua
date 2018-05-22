@@ -9,10 +9,9 @@ Citizen.CreateThread(function()
     print(" Debug mode is " .. tostring(XRPLifeConfig["server"].debugMode) .. "\n")
     print("---------------------------------------------------------------------------\n")
     if XRPLifeConfig["server"].checkXRPVersion then
-        PerformHttpRequest("http://raw.githubusercontent.com/xander1998/xrplife/master/version.json", function(code, text, something)
+        PerformHttpRequest("http://raw.githubusercontent.com/xander1998/xrplife/master/version.json", function(code, text, headers)
             local data = json.decode(text)
             local jsonVersion = json.decode(LoadResourceFile(GetCurrentResourceName(), "version.json"))
-
             if code == 200 then
                 print("\n")
                 print("---------------------------------------------------------------------------\n")
@@ -36,6 +35,7 @@ end)
 ---------------------------------------------------------------------------
 AddEventHandler("playerConnecting", function(name, reason, deferrals)
     local src = source
+    local joinTime = os.time()
     deferrals.defer()
 
     for a = 1, 5 do
@@ -47,8 +47,37 @@ AddEventHandler("playerConnecting", function(name, reason, deferrals)
         if #getresults.data >= 1 then
             local ban_data = json.decode(getresults.data[1].banned_data)
             if ban_data.banned then
-                local string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " )")
-                deferrals.done(string)
+                if ban_data.time ~= -1 then
+                    local timeLeft = ban_data.time - joinTime
+                    if timeLeft >= 1 then
+                        local string = ""
+
+                        if math.floor(timeLeft / 60) == 0 then
+                            string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " ) Duration - ( " .. timeLeft .. " ) seconds")
+                        else
+                            string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " ) Duration - ( " .. math.floor(timeLeft / 60) .. " ) minutes")
+                        end
+                        deferrals.done(string)
+                    else
+                        local banString = json.encode({banned = false, banner = "", reason = "", time = 0})
+                        XRPLifeDB["player"].UpdatePlayerBan(src, banString, function()
+                            XRPLifeDB["player"].UpdatePlayerName(src, function(results)
+                            end)
+                            if XRPLifeConfig["admin"].whitelistActive then
+                                if getresults.data[1].whitelisted == 1 then
+                                    deferrals.done()
+                                else
+                                    deferrals.done("[XRPLife]: You are not whitelisted.")
+                                end
+                            else
+                                deferrals.done()
+                            end
+                        end)
+                    end
+                else
+                    local string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " ) Duration - Permanent")
+                    deferrals.done(string)
+                end
             else
                 if XRPLifeConfig["admin"].whitelistActive then
                     if getresults.data[1].whitelisted == 1 then
@@ -59,11 +88,12 @@ AddEventHandler("playerConnecting", function(name, reason, deferrals)
                         deferrals.done("[XRPLife]: You are not whitelisted.")
                     end
                 else
+                    XRPLifeDB["player"].UpdatePlayerName(src, function(results)
+                    end)
                     deferrals.done()
                 end
             end
         else
-            print("Creating Player")
             XRPLifeDB["player"].CreatePlayer(src, function(createresults)
                 if XRPLifeConfig["admin"].whitelistActive then
                     deferrals.done("[XRPLife]: Whitelist active please rejoin the server.")

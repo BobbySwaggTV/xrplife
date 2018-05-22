@@ -11,7 +11,7 @@ Citizen.CreateThread(function()
 end)
 
 function StartTimeChanging()
-    SetTimeout(60000, function()
+    SetTimeout(XRPLifeConfig["time"].SecPerMin * 1000, function()
         minutes = minutes + 1
         if minutes >= 60 then
             hours = hours + 1

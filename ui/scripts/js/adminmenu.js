@@ -15,6 +15,7 @@ const AdminMenu = new Vue({
         showMenu: false,
         showError: false,
         muteChatNotification: false,
+        loading: false,
 
         // Strings
         errorMessage: "",
@@ -35,9 +36,15 @@ const AdminMenu = new Vue({
         ],
         AdminMessages: [],
 
+        // Kicking Player
+        ChosenPlayerKick: {},
+        ChosenKickReason: ""
+
     },
 
     methods: {
+
+        // Menu Methods
         OpenMenu(name, rank, perms, players) {
             this.name = name;
             this.rank = rank;
@@ -78,6 +85,8 @@ const AdminMenu = new Vue({
             return false
         },
 
+
+        // Chat Methods
         ToggleChatNotifications() {
             this.muteChatNotification = !this.muteChatNotification;
         },
@@ -116,6 +125,31 @@ const AdminMenu = new Vue({
                     notif.play();
                 }
             }
+        },
+
+        // Kick Methods
+        SetSelectedKickPlayer(_index) {
+            this.ChosenPlayerKick = this.players[_index];
+        },
+
+        SetKickPlayer() {
+            if (this.ChosenPlayerKick.serverid != null) {
+                axios.post("http://" + this.resource_name + "/recievekickrequest", {
+                    player: this.ChosenPlayerKick.serverid,
+                    reason: this.ChosenKickReason
+                }).then( (response) => {
+                    console.log(response);
+                }).catch( (error) => {
+                    console.log(error);
+                })
+            } else {
+                this.ThrowError("No player selected");
+            }
+        },
+
+        ClearKickMenu() {
+            this.ChosenPlayerKick = {};
+            this.ChosenKickReason = "";
         },
 
         ThrowError(Message) {

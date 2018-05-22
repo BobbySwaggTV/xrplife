@@ -65,15 +65,10 @@ document.onreadystatechange = () => {
 
                 AdminMenu.RecieveChatMessage(event.data.message_data, event.data.perms);
 
-            }
+            } else if (event.data.type == "pass_admin_error") {
 
-            ///////////////////////////////////////////////////////////////////////////
-            // Debug Menu
-            ///////////////////////////////////////////////////////////////////////////
-            if (event.data.type == "open_debug_menu") {
-                DebugMenu.ShowMenu(event.data.show);
-            } else if (event.data.type == "update_debug_localped") {
-                DebugMenu.UpdateLocalpedInfo(event.data.coords, event.data.heading);
+                AdminMenu.ThrowError(event.data.error);
+
             }
 
         });
