@@ -14,3 +14,7 @@ XRPLifeTables["characters"].methods = {}
 XRPLifeTables["vehicles"] = {}
 XRPLifeTables["vehicles"].list = {}
 XRPLifeTables["vehicles"].methods = {}
+
+XRPLifeTables["inventory"] = {}
+XRPLifeTables["inventory"].list = {}
+XRPLifeTables["inventory"].methods = {}

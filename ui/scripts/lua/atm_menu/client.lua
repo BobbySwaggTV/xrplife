@@ -59,6 +59,9 @@ Citizen.CreateThread(function()
     end
 end)
 
+---------------------------------------------------------------------------
+-- NUI Functions
+---------------------------------------------------------------------------
 RegisterNUICallback("depositatm", function(data, cb)
     print(tostring(data.amount))
     cb("ok")

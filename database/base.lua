@@ -6,3 +6,4 @@ XRPLifeDB = {}
 XRPLifeDB["player"] = {}
 XRPLifeDB["character"] = {}
 XRPLifeDB["clothing"] = {}
+XRPLifeDB["inventory"] = {}

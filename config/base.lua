@@ -9,3 +9,4 @@ XRPLifeConfig["player"] = {}
 XRPLifeConfig["admin"] = {}
 XRPLifeConfig["weather"] = {}
 XRPLifeConfig["time"] = {}
+XRPLifeConfig["inventory"] = {}

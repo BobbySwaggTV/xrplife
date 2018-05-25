@@ -16,4 +16,20 @@ XRPLifeConfig["character"].maxCharacters = 8
 ---------------------------------------------------------------------------
 XRPLifeConfig["character"].starterMoney = 1000
 
+---------------------------------------------------------------------------
+-- Starter Inventory
+---------------------------------------------------------------------------
+XRPLifeConfig["character"].startInventory = {
+    weapons = {
+        ["1"] = false,
+        ["2"] = false,
+        ["3"] = false,
+        ["4"] = false,
+        ["5"] = false,
+    },
+    items = {
+        {item = "Cash", amount = 500}
+    }
+}
+
 XRPLifeServer.Helpers.DebugMessage("Config - character.lua Loaded")

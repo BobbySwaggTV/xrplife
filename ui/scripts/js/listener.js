@@ -6,6 +6,35 @@ document.onreadystatechange = () => {
         window.addEventListener('message', function(event) {
 
             ///////////////////////////////////////////////////////////////////////////
+            // Notifications
+            ///////////////////////////////////////////////////////////////////////////
+            if (event.data.type == "notification_customurlicon") {
+
+                Notification.CustomURLIconNotification(event.data.title, event.data.body, event.data.time, event.data.url, event.data.showBar, event.data.pos);
+
+            } else if (event.data.type == "notification_customicon") {
+
+                Notification.CustomIconNotification(event.data.title, event.data.body, event.data.time, event.data.iconFile, event.data.showBar, event.data.pos);
+
+            } else if (event.data.type == "notification_success") {
+
+                Notification.SuccessNotification(event.data.title, event.data.body, event.data.time, event.data.showBar, event.data.pos);
+
+            } else if (event.data.type == "notification_error") {
+
+                Notification.ErrorNotification(event.data.title, event.data.body, event.data.time, event.data.showBar, event.data.pos);
+
+            } else if (event.data.type == "notification_warning") {
+                
+                Notification.WarningNotification(event.data.title, event.data.body, event.data.time, event.data.showBar, event.data.pos);
+
+            } else if (event.data.type == "notification_info") {
+                
+                Notification.InfoNotification(event.data.title, event.data.body, event.data.time, event.data.showBar, event.data.pos);
+
+            }
+            
+            ///////////////////////////////////////////////////////////////////////////
             // Character Menu
             ///////////////////////////////////////////////////////////////////////////
             if (event.data.type == "enable_character_menu") {

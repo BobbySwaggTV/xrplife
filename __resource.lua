@@ -6,117 +6,241 @@
 resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 resource_type 'gametype' { name = 'XRPLife' }
 
---------------------------------------------------------------------------------------------------------------------------------------------------------
------[[ DEPENDENCIES ]]-----
---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+-- DEPENDENCIES
+---------------------------------------------------------------------------
 dependencies {
     "externalsql"
 }
---------------------------------------------------------------------------------------------------------------------------------------------------------
------[[ NUI FILES ]]-----
---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+-- NUI
+---------------------------------------------------------------------------
 ui_page "ui/index.html"
 files {
-    -- UI Page
+    ---------------------------------------------------------------------------
+    -- Main UI Page
+    ---------------------------------------------------------------------------
     "ui/index.html",
 
-    -- Libraries
+    ---------------------------------------------------------------------------
+    -- JS LIBRARIES
+    ---------------------------------------------------------------------------
+
+    -- Axios HTTP Library
     "ui/libraries/js/axios.min.js",
+
+    -- VueJS Library
     "ui/libraries/js/vue.min.js",
+
+    -- Vuetify Library
     "ui/libraries/js/vuetify.js",
+
+    -- Notification Library
+    "ui/libraries/js/vue-snotify.min.js",
+
+    ---------------------------------------------------------------------------
+    -- CSS LIBRARIES
+    ---------------------------------------------------------------------------
+
+    -- Vuetify Library
     "ui/libraries/css/vuetify.css",
 
-    -- Sounds
+    -- Notification Library
+    "ui/libraries/css/material.css",
+
+    ---------------------------------------------------------------------------
+    -- SOUND FILES
+    ---------------------------------------------------------------------------
+
+    -- Admin Menu Sounds
     "ui/sounds/stairs.ogg",
 
-    -- Javascript
+    ---------------------------------------------------------------------------
+    -- IMAGE FILES
+    ---------------------------------------------------------------------------
+
+    ---------------------------------------------------------------------------
+    -- JS SCRIPTS
+    ---------------------------------------------------------------------------
+
+    -- NUI JS Helpers
     "ui/scripts/js/helpers.js",
+
+    -- NUI Listener
     "ui/scripts/js/listener.js",
+
+    -- NUI Notifications
+    "ui/scripts/js/notification.js",
+
+    -- NUI Character Menu
     "ui/scripts/js/charactermenu.js",
+
+    -- NUI ATM Menu
     "ui/scripts/js/atmmenu.js",
+
+    -- NUI Admin Menu
     "ui/scripts/js/adminmenu.js",
 
-    -- CSS
+    ---------------------------------------------------------------------------
+    -- CSS SCRIPTS
+    ---------------------------------------------------------------------------
+
+    -- NUI Notifications
+    "ui/css/notification.css",
+
+    -- NUI Character Menu
     "ui/css/charactermenu.css",
+
+    -- NUI ATM Menu
     "ui/css/atmmenu.css",
-    "ui/css/adminmenu.css"
+
+    -- NUI Admin Menu
+    "ui/css/adminmenu.css",
 }
 
---------------------------------------------------------------------------------------------------------------------------------------------------------
------[[ HELPER FILES ]]-----
---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+-- HELPERS
+---------------------------------------------------------------------------
+
+-- Server Helper Functions
 server_script "helpers/server.lua"
+
+-- Client Helper Functions
 client_script "helpers/client.lua"
 
---------------------------------------------------------------------------------------------------------------------------------------------------------
------[[ CONFIG FILES ]]-----
---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+-- CONFIG
+---------------------------------------------------------------------------
+
+-- Base Script
 server_script "config/base.lua"
+
+-- Server Config
 server_script "config/server.lua"
+
+-- Admin Config
 server_script "config/admin.lua"
+
+-- Character Config
 server_script "config/character.lua"
+
+-- Database Config
 server_script "config/database.lua"
+
+-- Weather Config
 server_script "config/weather.lua"
+
+-- Time Config
 server_script "config/time.lua"
 
---------------------------------------------------------------------------------------------------------------------------------------------------------
------[[ TABLE FILES ]]-----
---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Inventory Config
+server_script "config/inventory.lua"
+
+---------------------------------------------------------------------------
+-- TABLES
+---------------------------------------------------------------------------
+
+-- Base Script
 server_script "tables/base.lua"
+
+-- Player Data Table
 server_script "tables/players.lua"
+
+-- Character Data Table
 server_script "tables/characters.lua"
 
---------------------------------------------------------------------------------------------------------------------------------------------------------
------[[ DATABASE FILES ]]-----
---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Inventory Data Table
+server_script "tables/inventory.lua"
+
+---------------------------------------------------------------------------
+-- DATABASE
+---------------------------------------------------------------------------
+
+-- Base Script
 server_script "database/base.lua"
+
+-- Player Database
 server_script "database/player.lua"
+
+-- Character Database
 server_script "database/character.lua"
+
+-- Character Clothing Database
 server_script "database/clothing.lua"
 
---------------------------------------------------------------------------------------------------------------------------------------------------------
------[[ SERVER SCRIPTS ]]-----
---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Inventory Database
+server_script "database/inventory.lua"
 
---[[ Framework Scripts ]]--
+---------------------------------------------------------------------------
+-- SERVER SCRIPTS
+---------------------------------------------------------------------------
+
+-- Server Starter Script
 server_script "start.lua"
 
---[[ Chat ]]--
+-- Server Chat Handler
 server_script "scripts/chat/server.lua"
 server_script "scripts/chat/commands.lua"
 
---[[ Weather Sync ]]--
+-- Server Weather Handler
 server_script "scripts/weathersync/server.lua"
 
---[[ Time Sync ]]--
+-- Server Time Handler
 server_script "scripts/timesync/server.lua"
 
---[[ UI Scripts ]]--
+---------------------------------------------------------------------------
+-- SERVER UI SCRIPTS
+---------------------------------------------------------------------------
+
+-- Server Character Scripts
 server_script "ui/scripts/lua/character_menu/server.lua"
+
+-- Server ATM Scripts
 server_script "ui/scripts/lua/atm_menu/server.lua"
+
+-- Server Admin Scripts
 server_script "ui/scripts/lua/admin_menu/server.lua"
 
---------------------------------------------------------------------------------------------------------------------------------------------------------
------[[ CLIENT SCRIPTS ]]-----
---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Server Inventory Scripts
+server_script "ui/scripts/lua/inventory/server.lua"
 
---[[ Framework Scripts ]]--
+---------------------------------------------------------------------------
+-- CLIENT SCRIPTS
+---------------------------------------------------------------------------
+
+-- Client Starter Script
 client_script "fivem.lua"
 
---[[ Chat ]]--
+-- Client Chat Handler
 client_script "scripts/chat/client.lua"
 
---[[ Weather Sync ]]--
+-- Client Weather Handler
 client_script "scripts/weathersync/client.lua"
 
---[[ Time Sync ]]--
+-- Client Time Handler
 client_script "scripts/timesync/client.lua"
 
---[[ Debug ]]--
+-- Client Debug Handler
 client_script "scripts/debug/client.lua"
 
---[[ UI Scripts ]]--
+---------------------------------------------------------------------------
+-- CLIENT UI SCRIPTS
+---------------------------------------------------------------------------
+
+-- Client Notification Scripts
+client_script "ui/scripts/lua/notification/client.lua"
+
+-- Client Character Scripts
 client_script "ui/scripts/lua/character_menu/client.lua"
 client_script "ui/scripts/lua/character_menu/skycam.lua"
+
+-- Client ATM Scripts
 client_script "ui/scripts/lua/atm_menu/client.lua"
+
+-- Client Admin Scripts
 client_script "ui/scripts/lua/admin_menu/client.lua"
+
+-- Client Inventory Scripts
+client_script "ui/scripts/lua/inventory/client.lua"
+client_script "ui/scripts/lua/inventory/weapons.lua"

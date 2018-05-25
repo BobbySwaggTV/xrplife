@@ -131,6 +131,7 @@ end)
 AddEventHandler("playerDropped", function()
     local src = source
     XRPLifeTables["players"].methods.RemovePlayer(src)
+    XRPLifeTables["inventory"].methods.RemoveCharacterInventory(src)
     XRPLifeTables["characters"].methods.RemoveCharacter(src, function()
     end)
 end)

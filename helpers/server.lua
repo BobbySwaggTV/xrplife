@@ -83,4 +83,16 @@ XRPLifeServer.Helpers.CheckPlayerRankPerm = function(Rank, Perm)
     return false
 end
 
+---------------------------------------------------------------------------
+-- Does Item Exist In Table
+---------------------------------------------------------------------------
+XRPLifeServer.Helpers.DoesItemExist = function(table, item)
+    for a = 1, #table do
+        if table[a].item == item then
+            return true
+        end
+    end
+    return false
+end
+
 XRPLifeServer.Helpers.DebugMessage("Helpers - server.lua Loaded")

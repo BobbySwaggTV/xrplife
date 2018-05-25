@@ -3,6 +3,8 @@
         <title>XRPLife UI</title>
         <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'>
         <link rel="stylesheet" href="./libraries/css/vuetify.css">
+        <link rel="stylesheet" href="./libraries/css/material.css">
+        <link rel="stylesheet" href="./css/notification.css">
         <link rel="stylesheet" href="./css/charactermenu.css">
         <link rel="stylesheet" href="./css/atmmenu.css">
         <link rel="stylesheet" href="./css/adminmenu.css">
@@ -17,6 +19,12 @@
         </style>
     </head>
     <body>
+
+        <v-app id="Notification_System">
+            <v-content>
+                <vue-snotify></vue-snotify>
+            </v-content>
+        </v-app>
 
         <v-app id="Character_Menu" v-show="showMenu">
             <v-content>
@@ -275,8 +283,10 @@
         <script src="./libraries/js/axios.min.js"></script>
         <script src="./libraries/js/vue.min.js"></script>
         <script src="./libraries/js/vuetify.js"></script>
+        <script src="./libraries/js/vue-snotify.min.js"></script>
         <script src="./scripts/js/helpers.js"></script>
         <script src="./scripts/js/listener.js"></script>
+        <script src="./scripts/js/notification.js"></script>
         <script src="./scripts/js/charactermenu.js"></script>
         <script src="./scripts/js/atmmenu.js"></script>
         <script src="./scripts/js/adminmenu.js"></script>

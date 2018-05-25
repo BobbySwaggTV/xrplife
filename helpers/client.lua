@@ -68,6 +68,22 @@ XRPLifeClient.Helpers.Draw3DText = function(x, y, z, text)
 end
 
 ---------------------------------------------------------------------------
+-- Read Only Table
+---------------------------------------------------------------------------
+-- XRPLifeClient.Helpers.ReadOnlyTable{"Sunday", "Monday", "Tuesday", "Wednesday","Thursday", "Friday", "Saturday"}
+XRPLifeClient.Helpers.ReadOnlyTable = function(t)
+	local proxy = {}
+	local mt = {
+        __index = t,
+        __newindex = function (t,k,v)
+        	print("attempt to update a read-only table")
+		end
+	}
+	setmetatable(proxy, mt)
+	return proxy
+end
+
+---------------------------------------------------------------------------
 -- Debug message
 ---------------------------------------------------------------------------
 XRPLifeClient.Helpers.DebugMessage = function(message)
