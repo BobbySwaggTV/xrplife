@@ -23,7 +23,7 @@ XRPLifeTables["inventory"].methods.GetCharacterInventory = function(src, callbac
         if XRPLifeTables["inventory"].list[a].src == src then
             callback(XRPLifeTables["inventory"].list[a])
             if XRPLifeConfig["server"].debugMode then
-                XRPLifeServer.Helpers.DebugMessage(tostring("Tables - Adding Inventory"))
+                XRPLifeServer.Helpers.DebugMessage(tostring("Tables - Getting Inventory"))
                 XRPLifeServer.Helpers.DebugMessage(tostring(json.encode(XRPLifeTables["inventory"].list)))
             end
             break
@@ -39,7 +39,7 @@ XRPLifeTables["inventory"].methods.RemoveCharacterInventory = function(src)
         if XRPLifeTables["inventory"].list[a].src == src then
             table.remove(XRPLifeTables["inventory"].list, a)
             if XRPLifeConfig["server"].debugMode then
-                XRPLifeServer.Helpers.DebugMessage(tostring("Tables - Adding Inventory"))
+                XRPLifeServer.Helpers.DebugMessage(tostring("Tables - Removing Inventory"))
                 XRPLifeServer.Helpers.DebugMessage(tostring(json.encode(XRPLifeTables["inventory"].list)))
             end
             break
@@ -50,9 +50,9 @@ end
 ---------------------------------------------------------------------------
 -- Add Item To Character Inventory Table
 ---------------------------------------------------------------------------
-XRPLifeTables["inventory"].methods.AddItem = function(src, item, amount)
+XRPLifeTables["inventory"].methods.AddItem = function(src, item, amount, callback)
     XRPLifeTables["inventory"].methods.GetCharacterInventory(src, function(inventory)
-        if XRPLifeServer.Helpers.DoesItemExist(inventory, item) then
+        if XRPLifeServer.Helpers.DoesItemExist(inventory.items, item) then
             for a = 1, #XRPLifeTables["inventory"].list do
                 if XRPLifeTables["inventory"].list[a].src == src then
                     for b = 1, #XRPLifeTables["inventory"].list[a].items do
@@ -74,6 +74,7 @@ XRPLifeTables["inventory"].methods.AddItem = function(src, item, amount)
                 end
             end
         end
+        callback()
     end)
     if XRPLifeConfig["server"].debugMode then
         XRPLifeServer.Helpers.DebugMessage(tostring("Tables - Adding Inventory"))
@@ -86,33 +87,31 @@ end
 ---------------------------------------------------------------------------
 XRPLifeTables["inventory"].methods.RemoveItem = function(src, item, amount, callback)
     XRPLifeTables["inventory"].methods.GetCharacterInventory(src, function(inventory)
-        if XRPLifeServer.Helpers.DoesItemExist(inventory, item) then
+        if XRPLifeServer.Helpers.DoesItemExist(inventory.items, item) then
             for a = 1, #XRPLifeTables["inventory"].list do
                 if XRPLifeTables["inventory"].list[a].src == src then
                     for b = 1, #XRPLifeTables["inventory"].list[a].items do
                         if XRPLifeTables["inventory"].list[a].items[b].item == item then
-                            if XRPLifeTables["inventory"].list[a].items[b].amount > amount then
-                                XRPLifeTables["inventory"].list[a].items[b].amount = XRPLifeTables["inventory"].list[a].items[b].amount - amount
+                            if XRPLifeTables["inventory"].list[a].items[b].amount > tonumber(amount) then
+                                XRPLifeTables["inventory"].list[a].items[b].amount = XRPLifeTables["inventory"].list[a].items[b].amount - tonumber(amount)
                                 callback(true)
-                                break
-                            elseif XRPLifeTables["inventory"].list[a].items[b].amount == amount then
+                                return
+                            elseif XRPLifeTables["inventory"].list[a].items[b].amount == tonumber(amount) then
                                 table.remove(XRPLifeTables["inventory"].list[a].items, b)
                                 callback(true)
-                                break
-                            else
-                                callback(false)
-                                break
+                                return
                             end
                         end
                     end
                 end
             end
         else
+            print("STOPPED BECAUSE YOU DONT HAVE THAT ITEM")
             callback(false)
         end
     end)
     if XRPLifeConfig["server"].debugMode then
-        XRPLifeServer.Helpers.DebugMessage(tostring("Tables - Adding Inventory"))
+        XRPLifeServer.Helpers.DebugMessage(tostring("Tables - Removing Item From Inventory"))
         XRPLifeServer.Helpers.DebugMessage(tostring(json.encode(XRPLifeTables["inventory"].list)))
     end
 end

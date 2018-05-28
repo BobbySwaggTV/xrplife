@@ -1,46 +1,81 @@
 ---------------------------------------------------------------------------
--- Items Information
+-- Item Objects
+---------------------------------------------------------------------------
+XRPLifeConfig["inventory"].ItemObjects = {
+    -- Weapns
+    "w_ar_carbinerifle",
+    "w_sg_pumpshotgun",
+    "w_pi_stungun",
+    "w_me_nightstick",
+
+    -- Ammo
+    "prop_box_ammo01a",
+
+    -- Food
+    "prop_food_bs_burg1",
+    "ng_proc_beerbottle_01a",
+
+    -- Medical
+    "prop_cs_pills",
+    "prop_paper_bag_01",
+
+    -- Vehicle
+    "prop_tool_box_04",
+    "prop_tool_box_02",
+
+    -- Criminal
+    "prop_ing_crowbar",
+
+    -- General
+    "prop_cash_pile_02",
+
+    -- Drugs
+    "hei_prop_heist_weed_block_01b"
+}
+
+---------------------------------------------------------------------------
+-- Item Information
 ---------------------------------------------------------------------------
 XRPLifeConfig["inventory"].Items = {
     -- Primary Weapons
-    ["AR-15"] = {label = "AR-15", itemType = "PrimaryWeapon", iconName = "AR-15.png", object = "w_ar_carbinerifle", model = "weapon_carbinerifle"},
-    ["Mossberg 590"] = {label = "Mossberg 590", itemType = "primaryWeapon", object = "w_sg_pumpshotgun", model = "weapon_pumpshotgun"},
+    ["AR-15"] = {label = "AR-15", itemType = "PrimaryWeapon", iconName = "AR-15.png", ammoType = "5.56 AMMO", object = "w_ar_carbinerifle", model = "weapon_carbinerifle"},
+    ["Mossberg 590"] = {label = "Mossberg 590", itemType = "primaryWeapon", iconName = "Shotgun.png", ammoType = "12GA Buckshot", object = "w_sg_pumpshotgun", model = "weapon_pumpshotgun"},
 
     -- Secondary Weapons
-    ["X26 Taser"] = {label = "X26 Taser", itemType = "SecondaryWeapon"},
+    ["X26 Taser"] = {label = "X26 Taser", itemType = "SecondaryWeapon", iconName = "Taser.png", object = "w_pi_stungun", model = "weapon_stungun"},
 
     -- Melee Weapons
-    ["Baton"] = {label = "Baton", itemType = "MeleeWeapon"},
+    ["Baton"] = {label = "Baton", itemType = "MeleeWeapon", iconName = "Baton.png", object = "w_me_nightstick", model = "weapon_nightstick"},
 
     -- Ammo
-    ["5.56 AMMO"] = {label = "5.56 AMMO", itemType = "AmmoItem"},
-    [".45 AMMO"] = {label = ".45 AMMO", itemType = "AmmoItem"},
-    ["9x19 AMMO"] = {label = "9x19 AMMO", itemType = "AmmoItem"},
-    ["12GA Buckshot"] = {label = "12GA Buckshot", itemType = "AmmoItem"},
+    ["5.56 AMMO"] = {label = "5.56 AMMO", itemType = "AmmoItem", object = "prop_box_ammo01a"},
+    [".45 AMMO"] = {label = ".45 AMMO", itemType = "AmmoItem", object = "prop_box_ammo01a"},
+    ["9x19 AMMO"] = {label = "9x19 AMMO", itemType = "AmmoItem", object = "prop_box_ammo01a"},
+    ["12GA Buckshot"] = {label = "12GA Buckshot", itemType = "AmmoItem", object = "prop_box_ammo01a"},
 
     -- Food
-    ["Hamburger"] = {label = "Hamburger", itemType = "FoodItem"},
+    ["Hamburger"] = {label = "Hamburger", itemType = "FoodItem", object = "prop_food_bs_burg1"},
     
     -- Drink
-    ["Water"] = {label = "Water", itemType = "DrinkItem"},
+    ["Water"] = {label = "Water", itemType = "DrinkItem", object = "ng_proc_beerbottle_01a"},
 
     -- Medical
-    ["Bandage"] = {label = "Bandage", itemType = "MedicalItem"},
-    ["Medkit"] = {label = "Medkit", itemType = "MedicalItem"},
+    ["Pain Pills"] = {label = "Pain Pills", itemType = "MedicalItem", object = "prop_cs_pills"},
+    ["Medkit"] = {label = "Medkit", itemType = "MedicalItem", object = "prop_paper_bag_01"},
 
     -- Vehicle
-    ["Engine Kit"] = {label = "Engine Kit", itemType = "VehicleItem"},
-    ["Tire Kit"] = {label = "Tire Kit", itemType = "VehicleItem"},
+    ["Engine Kit"] = {label = "Engine Kit", itemType = "VehicleItem", object = "prop_tool_box_04"},
+    ["Tire Kit"] = {label = "Tire Kit", itemType = "VehicleItem", object = "prop_tool_box_02"},
 
     -- Criminal Items
-    ["Lockpick"] = {label = "Lockpick", itemType = "CriminalItem"},
+    ["Lockpick"] = {label = "Lockpick", itemType = "CriminalItem", object = "prop_ing_crowbar"},
 
     -- General Item
-    ["Cash"] = {label = "Cash", itemType = "GeneralItem"},
+    ["Cash"] = {label = "Cash", itemType = "GeneralItem", object = "prop_cash_pile_02"},
 
     -- Drug Item
-    ["Marijuana Seed"] = {label = "Marijuana Seed", itemType = "DrugItem"},
-    ["Harvested Marijuana"] = {label = "Harvested Marijuana", itemType = "DrugItem"},
-    ["Processed Marijuana"] = {label = "Processed Marijuana", itemType = "DrugItem"},
-    ["Marijuana Baggie"] = {label = "Marijuana Baggie", itemType = "DrugItem"}
+    ["Marijuana Seed"] = {label = "Marijuana Seed", itemType = "DrugItem", object = "prop_paper_bag_01"},
+    ["Harvested Marijuana"] = {label = "Harvested Marijuana", itemType = "DrugItem", object = "prop_paper_bag_01"},
+    ["Processed Marijuana"] = {label = "Processed Marijuana", itemType = "DrugItem", object = "hei_prop_heist_weed_block_01b"},
+    ["Marijuana Baggie"] = {label = "Marijuana Baggie", itemType = "DrugItem", object = "prop_paper_bag_01"}
 }

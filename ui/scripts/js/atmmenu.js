@@ -79,8 +79,13 @@ const ATMMenu = new Vue({
             }
         },
 
-        ChangeMenu(menu) {
-            this.menuState = menu;
-        },
+        UpdateMenu(status, message, balance) {
+            if (status) {
+                this.account = balance;
+            }
+            this.$refs.depositForm.reset();
+            this.$refs.withdrawForm.reset();
+            this.loading = false;
+        }
     }
 })

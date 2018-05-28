@@ -81,6 +81,10 @@ document.onreadystatechange = () => {
 
                 ATMMenu.OpenMenu(event.data.name, event.data.balance);
 
+            } else if (event.data.type == "update_atm_menu") {
+
+                ATMMenu.UpdateMenu(event.data.status, event.data.message, event.data.balance);
+
             }
 
             ///////////////////////////////////////////////////////////////////////////

@@ -81,6 +81,10 @@ function EnablePVP()
     NetworkSetFriendlyFireOption(true)
 end
 
+function RemoveAudio()
+    DisablePoliceReports()
+end
+
 function DisabledControls()
     DisableControlAction(1, 37, true) -- TAB
 end

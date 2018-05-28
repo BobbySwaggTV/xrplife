@@ -19,7 +19,7 @@ const AdminMenu = new Vue({
 
         // Strings
         errorMessage: "",
-        currentPage: "main",
+        currentPage: "main", // main
         adminMessage: "",
         
         // Arrays
@@ -35,10 +35,18 @@ const AdminMenu = new Vue({
             {label: "Change Ranks", page: "ranks", perm: "ChangeRanks"}
         ],
         AdminMessages: [],
+        BanTimeTypes: ["Seconds", "Minutes", "Days", "Years"],
 
         // Kicking Player
         ChosenPlayerKick: {},
-        ChosenKickReason: ""
+        ChosenKickReason: "",
+
+        // Banning Player
+        ChosenPlayerBan: {},
+        ChosenBanReason: "",
+        BanTimeType: "Seconds",
+        IsBanPerm: false,
+        ChosenBanTime: ""
 
     },
 
@@ -152,6 +160,25 @@ const AdminMenu = new Vue({
             this.ChosenKickReason = "";
         },
 
+        // Ban Methods
+        SetSelectedBanPlayer(_index) {
+            this.ChosenPlayerBan = this.players[_index];
+        },
+
+        SetBanPlayer() {
+            if (this.ChosenPlayerBan.serverid != null) {
+                // AXIOS POST HERE
+            } else {
+                this.ThrowError("No player selected");
+            }
+        },
+
+        ClearBanMenu() {
+            this.ChosenPlayerBan = {};
+            this.ChosenBanReason = "";
+        },
+
+        // Error Method
         ThrowError(Message) {
             this.errorMessage = Message;
             this.showError = true;

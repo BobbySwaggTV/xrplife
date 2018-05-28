@@ -92,4 +92,19 @@ XRPLifeDB["character"].DoesCharacterExist = function(name, dob, callback)
     end)
 end
 
+---------------------------------------------------------------------------
+-- Updates Character Bank Account
+---------------------------------------------------------------------------
+XRPLifeDB["character"].UpdateBankAccount = function(charid, newBalance, callback)
+    exports["externalsql"]:DBAsyncQuery({
+        string = "UPDATE `characters` SET `bank` = :bank WHERE `id` = :charid",
+        data = {
+            bank = newBalance,
+            charid = charid
+        }
+    }, function(results)
+        callback()
+    end)
+end
+
 XRPLifeServer.Helpers.DebugMessage("Database - character.lua Loaded")

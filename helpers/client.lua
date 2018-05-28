@@ -70,13 +70,13 @@ end
 ---------------------------------------------------------------------------
 -- Read Only Table
 ---------------------------------------------------------------------------
--- XRPLifeClient.Helpers.ReadOnlyTable{"Sunday", "Monday", "Tuesday", "Wednesday","Thursday", "Friday", "Saturday"}
 XRPLifeClient.Helpers.ReadOnlyTable = function(t)
 	local proxy = {}
 	local mt = {
         __index = t,
         __newindex = function (t,k,v)
-        	print("attempt to update a read-only table")
+            print("attempt to update a read-only table")
+            TriggerEvent("XRPLife_Notification:Error", "Cheater??", "You just tried to change my client code? Fuck You..", 8000, false, "rightCenter")
 		end
 	}
 	setmetatable(proxy, mt)

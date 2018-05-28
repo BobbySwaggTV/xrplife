@@ -112,6 +112,7 @@ RegisterServerEvent("XRPLife_Settings:RequestConfigSettings")
 AddEventHandler("XRPLife_Settings:RequestConfigSettings", function()
     local src = source
     TriggerClientEvent("XRPLife_DebugClientMode", src, XRPLifeConfig["server"].debugMode)
+    TriggerClientEvent("XRPLife_Inventory:SetObjects", src, XRPLifeConfig["inventory"].ItemObjects)
 end)
 
 ---------------------------------------------------------------------------

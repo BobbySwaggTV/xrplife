@@ -16,10 +16,10 @@ XRPLifeConfig["admin"].Ranks = {
 ---------------------------------------------------------------------------
 --[[ List of Permissions --
     Menu              = Ability to access the moderation menu
-    ChangeRank        = Ability to change a players rank for users who are lower than they are and also can not set user to the rank they are currently.
-    Whitelisting      = Ability to whitelist and unwhitelist players.
-    Ban               = Ability to ban players with a lower rank than them.
-    Kick              = Ability to kick players that are lower than them.
+    ChangeRank    = Ability to change a players rank for users who are lower than they are and also can not set user to the rank they are currently.
+    Whitelisting     = Ability to whitelist and unwhitelist players.
+    Ban                 = Ability to ban players with a lower rank than them.
+    Kick                = Ability to kick players that are lower than them.
     Freeze            = Ability to freeze and unfreeze players.
     Chat              = Ability to access the admin chat box in the menu.
     Report            = Ability to report players to administrators.

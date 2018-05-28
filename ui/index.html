@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="./css/charactermenu.css">
         <link rel="stylesheet" href="./css/atmmenu.css">
         <link rel="stylesheet" href="./css/adminmenu.css">
+        <link rel="stylesheet" href="./css/inventory.css">
 
         <style>
             html {
@@ -251,7 +252,6 @@
                                                     <v-btn color="red" dark block @click="ClearKickMenu()">Clear</v-btn>
                                                 </v-flex>
                                             </v-layout>
-
                                         </v-flex>
                                     </v-layout>
                                 </v-container>
@@ -259,7 +259,50 @@
                             </div>
 
                             <div v-show="currentPage == 'ban'">
-                                Ban Page
+                                
+                                <v-container grid-list-md>
+                                    <v-layout row>
+                                        <v-flex xs4>
+                                            <div id="Admin_Menu_Body_Ban_Playerlist">
+                                                <v-btn color="black" dark block v-for="(player, index) in players" @click="SetSelectedBanPlayer(index)">{{ player.serverid }}<br>{{ player.name }}</v-btn>
+                                            </div>
+                                        </v-flex>
+                                        <v-flex xs8>
+
+                                            <v-layout row>
+                                                <v-flex xs4>
+                                                    <v-select :items="BanTimeTypes" v-model="BanTimeType" :label="BanTimeType" :disabled="IsBanPerm"></v-select>
+                                                </v-flex>
+                                                <v-flex xs8>
+                                                    <div id="Admin_Menu_Body_Ban_Chosen" v-if="ChosenPlayerBan.serverid != null">Player: {{ChosenPlayerBan.serverid}} | {{ ChosenPlayerBan.name }}</div>
+                                                </v-flex>
+                                            </v-layout>
+                                            <v-layout row>
+                                                <v-flex xs8>
+                                                    <v-text-field label="Time" v-model="ChosenBanTime" type="number" :disabled="IsBanPerm" :suffix="BanTimeType"></v-text-field>
+                                                </v-flex>
+                                                <v-flex xs4>
+                                                    <v-switch label="Permanent Ban" v-model="IsBanPerm"></v-switch>
+                                                </v-flex>
+                                            </v-layout>
+                                            <v-layout row>
+                                                <v-flex xs12>
+                                                    <v-text-field label="Ban Reason" multi-line clearable no-resize></v-text-field>
+                                                </v-flex>
+                                            </v-layout>
+                                            <v-layout row>
+                                                <v-flex xs6>
+                                                    <v-btn color="green" dark block @click="">Ban</v-btn>
+                                                </v-flex>
+                                                <v-flex xs6>
+                                                    <v-btn color="red" dark block @click="">Clear</v-btn>
+                                                </v-flex>
+                                            </v-layout>
+
+                                        </v-flex>
+                                    </v-layout>    
+                                </v-container>
+
                             </div>
 
                             <div v-show="currentPage == 'white'">
@@ -280,6 +323,22 @@
             </v-content>
         </v-app>
 
+        <v-app id="Inventory_Menu" v-show="showMenu">
+            <v-content>
+                <div id="Inventory_Menu_Base">
+                    <div id="Inventory_Menu_Header">
+                        XRPLife Inventory
+                        <v-btn color="red" slot="activator" absolute right top fab dark small @click=""><v-icon>clear</v-icon></v-btn>
+                    </div>
+                    <div id="Inventory_Menu_Body">
+
+                        BODY HERE
+
+                    </div>
+                </div>
+            </v-content>
+        </v-app>
+
         <script src="./libraries/js/axios.min.js"></script>
         <script src="./libraries/js/vue.min.js"></script>
         <script src="./libraries/js/vuetify.js"></script>
@@ -290,5 +349,6 @@
         <script src="./scripts/js/charactermenu.js"></script>
         <script src="./scripts/js/atmmenu.js"></script>
         <script src="./scripts/js/adminmenu.js"></script>
+        <script src="./scripts/js/inventory.js"></script>
     </body>
 </html>

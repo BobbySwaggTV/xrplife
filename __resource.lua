@@ -82,6 +82,9 @@ files {
     -- NUI Admin Menu
     "ui/scripts/js/adminmenu.js",
 
+    -- NUI Inventory Menu
+    "ui/scripts/js/inventory.js",
+
     ---------------------------------------------------------------------------
     -- CSS SCRIPTS
     ---------------------------------------------------------------------------
@@ -97,6 +100,9 @@ files {
 
     -- NUI Admin Menu
     "ui/css/adminmenu.css",
+
+    -- NUI Inventory Menu
+    "ui/css/inventory.css",
 }
 
 ---------------------------------------------------------------------------

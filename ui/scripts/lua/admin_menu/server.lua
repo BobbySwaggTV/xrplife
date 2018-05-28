@@ -16,7 +16,7 @@ RegisterServerEvent("XRPLife_AdminMenu:TriggerKickClient")
 AddEventHandler("XRPLife_AdminMenu:TriggerKickClient", function(player, reason)
     local src = source
     local player = tonumber(player)
-    if src ~= player then
+    --if src ~= player then
         XRPLifeTables["players"].methods.GetPlayer(src, function(admin)
             XRPLifeTables["players"].methods.GetPlayer(player, function(other)
                 if XRPLifeServer.Helpers.CheckPlayerRankPerm(admin.rank, "Kick") then

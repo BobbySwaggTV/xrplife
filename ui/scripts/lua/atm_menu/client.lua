@@ -63,21 +63,24 @@ end)
 -- NUI Functions
 ---------------------------------------------------------------------------
 RegisterNUICallback("depositatm", function(data, cb)
-    print(tostring(data.amount))
+    TriggerServerEvent("XRPLife_ATMMenu:DepositMoney", data.amount)
     cb("ok")
-end)
-
-RegisterNetEvent("XRPLife_ATMMenu:DepositCallback")
-AddEventHandler("XRPLife_ATMMenu:DepositCallback", function(status, message, balance)
-
 end)
 
 RegisterNUICallback("withdrawatm", function(data, cb)
-    print(tostring(data.amount))
+    TriggerServerEvent("XRPLife_ATMMenu:WithdrawMoney", data.amount)
     cb("ok")
 end)
 
-RegisterNetEvent("XRPLife_ATMMenu:WithdrawCallback")
-AddEventHandler("XRPLife_ATMMenu:WithdrawCallback", function(status, message, balance)
-    
+RegisterNetEvent("XRPLife_ATMMenu:ActionCallback")
+AddEventHandler("XRPLife_ATMMenu:ActionCallback", function(status, message, balance)
+    SendNUIMessage({
+        type = "update_atm_menu",
+        status = status,
+        message = message,
+        balance = balance
+    })
+    if status == false then
+        TriggerEvent("XRPLife_Notification:Error", "XRPLife Banking", message, 5000, false, "rightCenter")
+    end
 end)
