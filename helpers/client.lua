@@ -24,7 +24,7 @@ end
 ---------------------------------------------------------------------------
 -- Checks if ped is in seat
 ---------------------------------------------------------------------------
-XRPLifeClient.Helpers.IsPedInSeat(ped, vehicle, index)
+XRPLifeClient.Helpers.IsPedInSeat = function(ped, vehicle, index)
     if GetPedInVehicleSeat(vehicle, index) == ped then
         return true
     else
