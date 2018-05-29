@@ -43,66 +43,74 @@ AddEventHandler("playerConnecting", function(name, reason, deferrals)
         Wait(1000)
     end
 
-    XRPLifeDB["player"].GetPlayer(src, function(getresults)
-        if #getresults.data >= 1 then
-            local ban_data = json.decode(getresults.data[1].banned_data)
-            if ban_data.banned then
-                if ban_data.time ~= -1 then
-                    local timeLeft = ban_data.time - joinTime
-                    if timeLeft >= 1 then
-                        local string = ""
+    if XRPLifeServer.Helpers.PlayerIdentifier(XRPLifeConfig["database"].identifier, src) ~= false then
+        XRPLifeDB["player"].GetPlayer(src, function(getresults)
+            if #getresults.data >= 1 then
+                local ban_data = json.decode(getresults.data[1].banned_data)
+                if ban_data.banned then
+                    if ban_data.time ~= -1 then
+                        local timeLeft = ban_data.time - joinTime
 
-                        if math.floor(timeLeft / 60) == 0 then
-                            string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " ) Duration - ( " .. timeLeft .. " ) seconds")
-                        else
-                            string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " ) Duration - ( " .. math.floor(timeLeft / 60) .. " ) minutes")
-                        end
-                        deferrals.done(string)
-                    else
-                        local banString = json.encode({banned = false, banner = "", reason = "", time = 0})
-                        XRPLifeDB["player"].UpdatePlayerBan(src, banString, function()
-                            XRPLifeDB["player"].UpdatePlayerName(src, function(results)
-                            end)
-                            if XRPLifeConfig["admin"].whitelistActive then
-                                if getresults.data[1].whitelisted == 1 then
-                                    deferrals.done()
-                                else
-                                    deferrals.done("[XRPLife]: You are not whitelisted.")
-                                end
+                        print("TIME LEFT ON PLAYER BAN: " .. timeLeft)
+
+                        if timeLeft >= 1 then
+                            local string = ""
+
+                            if math.floor(timeLeft / 60) == 0 then
+                                string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " ) Duration - ( " .. timeLeft .. " ) seconds")
                             else
-                                deferrals.done()
+                                string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " ) Duration - ( " .. math.floor(timeLeft / 60) .. " ) minutes")
                             end
-                        end)
+                            deferrals.done(string)
+                        else
+                            local banString = json.encode({banned = false, banner = "", reason = "", time = 0})
+                            XRPLifeDB["player"].UpdatePlayerBan(src, banString, function()
+                                XRPLifeDB["player"].UpdatePlayerName(src, function(results)
+                                end)
+                                if XRPLifeConfig["admin"].whitelistActive then
+                                    if getresults.data[1].whitelisted == 1 then
+                                        deferrals.done()
+                                    else
+                                        deferrals.done("[XRPLife]: You are not whitelisted.")
+                                    end
+                                else
+                                    deferrals.done()
+                                end
+                            end)
+                        end
+                    else
+                        local string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " ) Duration - Permanent")
+                        deferrals.done(string)
                     end
                 else
-                    local string = tostring("[XRPLife]: You have been banned for ( " .. ban_data.reason .. " ) by ( " .. ban_data.banner .. " ) Duration - Permanent")
-                    deferrals.done(string)
-                end
-            else
-                if XRPLifeConfig["admin"].whitelistActive then
-                    if getresults.data[1].whitelisted == 1 then
+                    if XRPLifeConfig["admin"].whitelistActive then
+                        if getresults.data[1].whitelisted == 1 then
+                            XRPLifeDB["player"].UpdatePlayerName(src, function(results)
+                            end)
+                            deferrals.done()
+                        else
+                            deferrals.done("[XRPLife]: You are not whitelisted.")
+                        end
+                    else
                         XRPLifeDB["player"].UpdatePlayerName(src, function(results)
                         end)
                         deferrals.done()
-                    else
-                        deferrals.done("[XRPLife]: You are not whitelisted.")
                     end
-                else
-                    XRPLifeDB["player"].UpdatePlayerName(src, function(results)
-                    end)
-                    deferrals.done()
                 end
+            else
+                XRPLifeDB["player"].CreatePlayer(src, function(createresults)
+                    if XRPLifeConfig["admin"].whitelistActive then
+                        deferrals.done("[XRPLife]: Whitelist active please rejoin the server.")
+                    else
+                        deferrals.done()
+                    end
+                end)
             end
-        else
-            XRPLifeDB["player"].CreatePlayer(src, function(createresults)
-                if XRPLifeConfig["admin"].whitelistActive then
-                    deferrals.done("[XRPLife]: Whitelist active please rejoin the server.")
-                else
-                    deferrals.done()
-                end
-            end)
-        end
-    end)
+        end)
+    else
+        local string = tostring("[XRPLife]: You do not have the correct identifier to join: " .. XRPLifeConfig["database"].identifier)
+        deferrals.done(string)
+    end
 end)
 
 ---------------------------------------------------------------------------

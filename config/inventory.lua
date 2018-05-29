@@ -47,12 +47,6 @@ XRPLifeConfig["inventory"].Items = {
     -- Melee Weapons
     ["Baton"] = {label = "Baton", itemType = "MeleeWeapon", iconName = "Baton.png", object = "w_me_nightstick", model = "weapon_nightstick"},
 
-    -- Ammo
-    ["5.56 AMMO"] = {label = "5.56 AMMO", itemType = "AmmoItem", object = "prop_box_ammo01a"},
-    [".45 AMMO"] = {label = ".45 AMMO", itemType = "AmmoItem", object = "prop_box_ammo01a"},
-    ["9x19 AMMO"] = {label = "9x19 AMMO", itemType = "AmmoItem", object = "prop_box_ammo01a"},
-    ["12GA Buckshot"] = {label = "12GA Buckshot", itemType = "AmmoItem", object = "prop_box_ammo01a"},
-
     -- Food
     ["Hamburger"] = {label = "Hamburger", itemType = "FoodItem", object = "prop_food_bs_burg1"},
     

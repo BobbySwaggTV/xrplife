@@ -51,6 +51,14 @@ RegisterNUICallback("recievekickrequest", function(data, cb)
 end)
 
 ---------------------------------------------------------------------------
+-- Pass Admin Ban Request
+---------------------------------------------------------------------------
+RegisterNUICallback("recievebanrequest", function(data, cb)
+    TriggerServerEvent("XRPLife_AdminMenu:TriggerBanClient", data.player, data.reason, data.time)
+    cb("ok")
+end)
+
+---------------------------------------------------------------------------
 -- Throw Error To Admin Menu
 ---------------------------------------------------------------------------
 RegisterNetEvent("XRPLife_AdminMenu:ThrowMenuError")

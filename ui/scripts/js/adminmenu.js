@@ -35,13 +35,21 @@ const AdminMenu = new Vue({
             {label: "Change Ranks", page: "ranks", perm: "ChangeRanks"}
         ],
         AdminMessages: [],
-        BanTimeTypes: ["Seconds", "Minutes", "Days", "Years"],
+        BanTimeTypes: ["Seconds", "Minutes", "Hours", "Days", "Weeks", "Months", "Years"],
+
+        // Rules
+        banTimeRules: [
+            (v) => !!v || "Time required",
+            (v) => typeof v != "int" || "Number Required",
+            (v) => v > 0 || "Number must be greater than 0"
+        ],
 
         // Kicking Player
         ChosenPlayerKick: {},
         ChosenKickReason: "",
 
         // Banning Player
+        BanFormValid: "",
         ChosenPlayerBan: {},
         ChosenBanReason: "",
         BanTimeType: "Seconds",
@@ -167,7 +175,41 @@ const AdminMenu = new Vue({
 
         SetBanPlayer() {
             if (this.ChosenPlayerBan.serverid != null) {
-                // AXIOS POST HERE
+                if (this.$refs.banForm.validate()) {
+                    var convertedSeconds = 0;
+
+                    if (!this.IsBanPerm) {
+                        if (this.BanTimeType == "Seconds") {
+                            convertedSeconds = Number(this.ChosenBanTime);
+                        } else if (this.BanTimeType == "Minutes") {
+                            convertedSeconds = Number(this.ChosenBanTime) * 60;
+                        } else if (this.BanTimeType == "Hours") {
+                            convertedSeconds = Number(this.ChosenBanTime) * 3600;
+                        } else if (this.BanTimeType == "Days") {
+                            convertedSeconds = Number(this.ChosenBanTime) * 86400;
+                        } else if (this.BanTimeType == "Weeks") {
+                            convertedSeconds = Number(this.ChosenBanTime) * 604800;
+                        } else if (this.BanTimeType == "Months") {
+                            convertedSeconds = Number(this.ChosenBanTime) * 2628000;
+                        } else if (this.BanTimeType == "Years") {
+                            convertedSeconds = Number(this.ChosenBanTime) * 31536000;
+                        } else {
+                            convertedSeconds = Number(this.ChosenBanTime);
+                        }
+                    } else {
+                        convertedSeconds = -1;
+                    }
+
+                    axios.post("http://" + this.resource_name + "/recievebanrequest", {
+                        player: this.ChosenPlayerBan.serverid,
+                        reason: this.ChosenBanReason,
+                        time: convertedSeconds
+                    }).then( (response) => {
+                        console.log(response);
+                    }).catch( (error) => {
+                        console.log(error);
+                    })
+                }
             } else {
                 this.ThrowError("No player selected");
             }
@@ -176,6 +218,10 @@ const AdminMenu = new Vue({
         ClearBanMenu() {
             this.ChosenPlayerBan = {};
             this.ChosenBanReason = "";
+            this.IsBanPerm = false;
+            this.ChosenBanTime = "";
+            this.$refs.banForm.reset();
+            this.BanTimeType = "Seconds";
         },
 
         // Error Method
@@ -183,5 +229,16 @@ const AdminMenu = new Vue({
             this.errorMessage = Message;
             this.showError = true;
         },
+    },
+
+    watch: {
+
+        "ChosenBanTime" : (val, oldVal) => {
+            if (val != oldVal) {
+                var round = Math.round(val);
+                AdminMenu.ChosenBanTime = round;
+            }
+        }
+
     }
 })

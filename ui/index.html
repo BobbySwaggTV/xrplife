@@ -268,37 +268,38 @@
                                             </div>
                                         </v-flex>
                                         <v-flex xs8>
+                                            <v-form ref="banForm" v-model="BanFormValid">
+                                                <v-layout row>
+                                                    <v-flex xs4>
+                                                        <v-select :items="BanTimeTypes" v-model="BanTimeType" :label="BanTimeType" :disabled="IsBanPerm"></v-select>
+                                                    </v-flex>
+                                                    <v-flex xs8>
+                                                        <div id="Admin_Menu_Body_Ban_Chosen" v-if="ChosenPlayerBan.serverid != null">Player: {{ChosenPlayerBan.serverid}} | {{ ChosenPlayerBan.name }}</div>
+                                                    </v-flex>
+                                                </v-layout>
+                                                <v-layout row>
+                                                    <v-flex xs8>
+                                                        <v-text-field label="Time" v-model="ChosenBanTime" type="number" :disabled="IsBanPerm" :suffix="BanTimeType" :rules="banTimeRules"></v-text-field>
+                                                    </v-flex>
+                                                    <v-flex xs4>
+                                                        <v-switch label="Permanent Ban" v-model="IsBanPerm"></v-switch>
+                                                    </v-flex>
+                                                </v-layout>
+                                                <v-layout row>
+                                                    <v-flex xs12>
+                                                        <v-text-field label="Ban Reason" multi-line clearable no-resize v-model="ChosenBanReason"></v-text-field>
+                                                    </v-flex>
+                                                </v-layout>
+                                            </v-form>
 
                                             <v-layout row>
-                                                <v-flex xs4>
-                                                    <v-select :items="BanTimeTypes" v-model="BanTimeType" :label="BanTimeType" :disabled="IsBanPerm"></v-select>
-                                                </v-flex>
-                                                <v-flex xs8>
-                                                    <div id="Admin_Menu_Body_Ban_Chosen" v-if="ChosenPlayerBan.serverid != null">Player: {{ChosenPlayerBan.serverid}} | {{ ChosenPlayerBan.name }}</div>
-                                                </v-flex>
-                                            </v-layout>
-                                            <v-layout row>
-                                                <v-flex xs8>
-                                                    <v-text-field label="Time" v-model="ChosenBanTime" type="number" :disabled="IsBanPerm" :suffix="BanTimeType"></v-text-field>
-                                                </v-flex>
-                                                <v-flex xs4>
-                                                    <v-switch label="Permanent Ban" v-model="IsBanPerm"></v-switch>
-                                                </v-flex>
-                                            </v-layout>
-                                            <v-layout row>
-                                                <v-flex xs12>
-                                                    <v-text-field label="Ban Reason" multi-line clearable no-resize></v-text-field>
-                                                </v-flex>
-                                            </v-layout>
-                                            <v-layout row>
                                                 <v-flex xs6>
-                                                    <v-btn color="green" dark block @click="">Ban</v-btn>
+                                                    <v-btn color="green" dark block @click="SetBanPlayer()">Ban</v-btn>
                                                 </v-flex>
                                                 <v-flex xs6>
-                                                    <v-btn color="red" dark block @click="">Clear</v-btn>
+                                                    <v-btn color="red" dark block @click="ClearBanMenu()">Clear</v-btn>
                                                 </v-flex>
                                             </v-layout>
-
                                         </v-flex>
                                     </v-layout>    
                                 </v-container>
