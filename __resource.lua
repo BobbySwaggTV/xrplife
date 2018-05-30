@@ -185,14 +185,14 @@ server_script "database/inventory.lua"
 -- Server Starter Script
 server_script "start.lua"
 
--- Server Chat Handler
+-- Server Chat
 server_script "scripts/chat/server.lua"
 server_script "scripts/chat/commands.lua"
 
--- Server Weather Handler
+-- Server Weather
 server_script "scripts/weathersync/server.lua"
 
--- Server Time Handler
+-- Server Time
 server_script "scripts/timesync/server.lua"
 
 ---------------------------------------------------------------------------
@@ -218,16 +218,20 @@ server_script "ui/scripts/lua/inventory/server.lua"
 -- Client Starter Script
 client_script "fivem.lua"
 
--- Client Chat Handler
+-- Client Handlers
+client_script "scripts/handlers/vehicles.lua"
+client_script "scripts/vehicles/damage/client.lua"
+
+-- Client Chat
 client_script "scripts/chat/client.lua"
 
--- Client Weather Handler
+-- Client Weather
 client_script "scripts/weathersync/client.lua"
 
--- Client Time Handler
+-- Client Time
 client_script "scripts/timesync/client.lua"
 
--- Client Debug Handler
+-- Client Debug
 client_script "scripts/debug/client.lua"
 
 ---------------------------------------------------------------------------

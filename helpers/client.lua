@@ -5,8 +5,7 @@ XRPLifeClient.Variables = {}
 ---------------------------------------------------------------------------
 -- XRPLife Helper Variables
 ---------------------------------------------------------------------------
-XRPLifeClient.Variables.inVehicle = false
-XRPLifeClient.Variables.playingAnim = false
+XRPLifeClient.Variables.inVehicle = {inVehicle = false, vehicle = nil, seat = nil}
 
 ---------------------------------------------------------------------------
 -- Gets Local Players Ped
@@ -24,11 +23,13 @@ end
 ---------------------------------------------------------------------------
 -- Checks if ped is in seat
 ---------------------------------------------------------------------------
-XRPLifeClient.Helpers.IsPedInSeat = function(ped, vehicle, index)
-    if GetPedInVehicleSeat(vehicle, index) == ped then
-        return true
-    else
-        return false
+XRPLifeClient.Helpers.GetPedVehicleSeat = function(ped, vehicle)
+    local seatCount = GetVehicleModelNumberOfSeats(GetHashKey(GetEntityModel(vehicle)))
+    for a = -1, seatCount do
+        local pedInSeat = GetPedInVehicleSeat(vehicle, a)
+        if pedInSeat == ped then
+            return a
+        end
     end
 end
 

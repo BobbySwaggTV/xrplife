@@ -1,35 +1,29 @@
 local firstSpawn = true
 
 ---------------------------------------------------------------------------
--- Client loads into the server
+-- Spawning player into server.. Setup char menu etc..
 ---------------------------------------------------------------------------
-AddEventHandler("onClientMapStart", function()
-    TriggerServerEvent("XRPLife_Start")
-    TriggerServerEvent("XRPLife_Weather:ConnectionSetWeather")
-    TriggerServerEvent("XRPLife_Time:ConnectionSetTime")
-end)
-
----------------------------------------------------------------------------
--- Calls one time to disable things on spawn
----------------------------------------------------------------------------
-Citizen.CreateThread(function()
-    while true do
-        if firstSpawn then
-            TriggerServerEvent("XRPLife_Settings:RequestConfigSettings")
-
-            Wait(3000)
-            
-            DisableAutoRespawn()
-            DisableDispatch()
-            firstSpawn = false
-        end
-        Citizen.Wait(0)
+AddEventHandler('playerSpawned', function(spawn)
+    if firstSpawn then
+        TriggerServerEvent("XRPLife_Start")
+        TriggerServerEvent("XRPLife_Weather:ConnectionSetWeather")
+        TriggerServerEvent("XRPLife_Time:ConnectionSetTime")
+        TriggerServerEvent("XRPLife_Settings:RequestConfigSettings")
+        firstSpawn = false
     end
 end)
 
+---------------------------------------------------------------------------
+-- Client loads into the server
+---------------------------------------------------------------------------
+AddEventHandler("onClientMapStart", function()
+    DisableAutoRespawn()
+    DisableDispatch()
+end)
+
 function DisableAutoRespawn()
-    exports.spawnmanager:spawnPlayer()
-    exports.spawnmanager:setAutoSpawn(false)
+    exports["spawnmanager"]:spawnPlayer()
+    exports["spawnmanager"]:setAutoSpawn(false)
 end
 
 function DisableDispatch()
@@ -43,7 +37,7 @@ end
 ---------------------------------------------------------------------------
 Citizen.CreateThread(function()
     while true do
-        if not firstSpawn then
+        if firstSpawn == false then
             RemoveWantedLevel()
             DisableHealthRegen()
             EnablePVP()
@@ -66,7 +60,6 @@ function RemoveWeaponDrops()
     local pedPos = GetEntityCoords(GetPlayerPed(PlayerId()), false)
     for a = 1, #pickupList do
         if IsPickupWithinRadius(GetHashKey(pickupList[a]), pedPos.x, pedPos.y, pedPos.z, 50.0) then
-            print("Removing Pickup")
             RemoveAllPickupsOfType(GetHashKey(pickupList[a]))
         end
     end
