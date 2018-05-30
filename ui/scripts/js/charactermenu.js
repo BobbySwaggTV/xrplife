@@ -22,6 +22,7 @@ const CharacterMenu = new Vue({
         nameRules: [
             (v) => !!v || "Name required",
             (v) => !!v && v.length <= 15 || "Name must be 15 characters or less",
+            (v) => !!v && RegExp("^[a-zA-Z]+$").test(v) || "Invalid Characters",
             (v) => !!v && v.length >= 4 || "Name must be 4 - 15 characters"
         ],
         selectRules: [

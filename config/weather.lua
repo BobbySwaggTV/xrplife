@@ -16,7 +16,17 @@ XRPLifeConfig["weather"].isWinter = false
 ---------------------------------------------------------------------------
 -- Regular Weather Types
 ---------------------------------------------------------------------------
-XRPLifeConfig["weather"].regularWeatherTypes = {"CLEAR","EXTRASUNNY","CLOUDS","OVERCAST","RAIN","CLEARING","THUNDER","SMOG","FOGGY"}
+XRPLifeConfig["weather"].regularWeatherTypes = {
+    "CLEAR",
+    "EXTRASUNNY",
+    "CLOUDS",
+    "OVERCAST",
+    "RAIN",
+    "CLEARING",
+    "THUNDER",
+    "SMOG",
+    "FOGGY"
+}
 
 ---------------------------------------------------------------------------
 -- Winter Weather Types

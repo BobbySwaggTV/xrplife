@@ -5,7 +5,11 @@ const InventoryMenu = new Vue({
         resource_name: "xrplife",
 
         // Booleans
-        showMenu: false
+        showMenu: false,
+
+        // Arrays
+        inventoryItems: [],
+        ItemActions: []
     },
 
     methods: {

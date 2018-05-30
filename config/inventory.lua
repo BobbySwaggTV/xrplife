@@ -38,14 +38,14 @@ XRPLifeConfig["inventory"].ItemObjects = {
 ---------------------------------------------------------------------------
 XRPLifeConfig["inventory"].Items = {
     -- Primary Weapons
-    ["AR-15"] = {label = "AR-15", itemType = "PrimaryWeapon", iconName = "AR-15.png", ammoType = "5.56 AMMO", object = "w_ar_carbinerifle", model = "weapon_carbinerifle"},
-    ["Mossberg 590"] = {label = "Mossberg 590", itemType = "primaryWeapon", iconName = "Shotgun.png", ammoType = "12GA Buckshot", object = "w_sg_pumpshotgun", model = "weapon_pumpshotgun"},
+    ["AR-15"] = {label = "AR-15", itemType = "PrimaryWeapon", object = "w_ar_carbinerifle", model = "weapon_carbinerifle"},
+    ["Mossberg 590"] = {label = "Mossberg 590", itemType = "primaryWeapon", object = "w_sg_pumpshotgun", model = "weapon_pumpshotgun"},
 
     -- Secondary Weapons
-    ["X26 Taser"] = {label = "X26 Taser", itemType = "SecondaryWeapon", iconName = "Taser.png", object = "w_pi_stungun", model = "weapon_stungun"},
+    ["X26 Taser"] = {label = "X26 Taser", itemType = "SecondaryWeapon", object = "w_pi_stungun", model = "weapon_stungun"},
 
     -- Melee Weapons
-    ["Baton"] = {label = "Baton", itemType = "MeleeWeapon", iconName = "Baton.png", object = "w_me_nightstick", model = "weapon_nightstick"},
+    ["Baton"] = {label = "Baton", itemType = "MeleeWeapon", object = "w_me_nightstick", model = "weapon_nightstick"},
 
     -- Food
     ["Hamburger"] = {label = "Hamburger", itemType = "FoodItem", object = "prop_food_bs_burg1"},
