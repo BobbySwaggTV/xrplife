@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2018 at 05:58 PM
+-- Generation Time: Jun 19, 2018 at 07:41 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -33,7 +33,6 @@ CREATE TABLE `characters` (
   `name` varchar(255) NOT NULL,
   `dob` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
-  `model` varchar(255) NOT NULL,
   `bank` int(11) NOT NULL,
   `playerid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -46,18 +45,10 @@ CREATE TABLE `characters` (
 
 CREATE TABLE `clothing` (
   `id` int(11) NOT NULL,
-  `face` text NOT NULL,
-  `beard` text NOT NULL,
-  `haircut` text NOT NULL,
-  `shirt` text NOT NULL,
-  `pants` text NOT NULL,
-  `hands` text NOT NULL,
-  `shoes` text NOT NULL,
-  `eyes` text NOT NULL,
-  `accessories` text NOT NULL,
-  `items` text NOT NULL,
-  `decals` text NOT NULL,
-  `innershirts` text NOT NULL,
+  `model` varchar(255) NOT NULL,
+  `clothing` text NOT NULL,
+  `props` text NOT NULL,
+  `tattoos` text NOT NULL,
   `char_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -92,20 +83,6 @@ CREATE TABLE `players` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `props`
---
-
-CREATE TABLE `props` (
-  `id` int(11) NOT NULL,
-  `hats` text NOT NULL,
-  `glasses` text NOT NULL,
-  `ears` text NOT NULL,
-  `char_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `vehicles`
 --
 
@@ -133,8 +110,7 @@ ALTER TABLE `characters`
 -- Indexes for table `clothing`
 --
 ALTER TABLE `clothing`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `char_id` (`char_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `inventory`
@@ -148,13 +124,6 @@ ALTER TABLE `inventory`
 --
 ALTER TABLE `players`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `props`
---
-ALTER TABLE `props`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `char_id` (`char_id`);
 
 --
 -- Indexes for table `vehicles`
@@ -171,31 +140,25 @@ ALTER TABLE `vehicles`
 -- AUTO_INCREMENT for table `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `clothing`
 --
 ALTER TABLE `clothing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `players`
 --
 ALTER TABLE `players`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `props`
---
-ALTER TABLE `props`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `vehicles`
@@ -214,22 +177,10 @@ ALTER TABLE `characters`
   ADD CONSTRAINT `characters_ibfk_1` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `clothing`
---
-ALTER TABLE `clothing`
-  ADD CONSTRAINT `clothing_ibfk_1` FOREIGN KEY (`char_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `inventory`
 --
 ALTER TABLE `inventory`
   ADD CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`char_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `props`
---
-ALTER TABLE `props`
-  ADD CONSTRAINT `props_ibfk_1` FOREIGN KEY (`char_id`) REFERENCES `characters` (`id`);
 
 --
 -- Constraints for table `vehicles`
