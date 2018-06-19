@@ -7,8 +7,7 @@ XRPLifeTables["characters"].methods.AddCharacter = function(src, char_data, call
         charid = char_data.id,
         name = char_data.name,
         dob = char_data.dob,
-        gender = char_data.gender,
-        model = char_data.model
+        gender = char_data.gender
     })
     if XRPLifeConfig["server"].debugMode then
         XRPLifeServer.Helpers.DebugMessage(tostring("Tables - Adding Character"))

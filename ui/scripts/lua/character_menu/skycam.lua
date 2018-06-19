@@ -24,11 +24,13 @@ end)
 
 RegisterNetEvent("XRPLife_CharacterMenu:StopSkyCamera")
 AddEventHandler("XRPLife_CharacterMenu:StopSkyCamera", function()
-    startCameraRotations = false
-    RenderScriptCams(0, 1, 1500, 1, 1)
-    DestroyCam(spawnedCamera, false)
-    spawnedCamera = nil
-    selectedCameraRot = nil
+    if startCameraRotations then
+        startCameraRotations = false
+        RenderScriptCams(0, 1, 1500, 1, 1)
+        DestroyCam(spawnedCamera, false)
+        spawnedCamera = nil
+        selectedCameraRot = nil
+    end
 end)
 
 Citizen.CreateThread(function()

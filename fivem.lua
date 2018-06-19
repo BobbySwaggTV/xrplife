@@ -43,6 +43,7 @@ Citizen.CreateThread(function()
             EnablePVP()
             DisabledControls()
             RemoveWeaponDrops()
+            RemoveSeatShuffle()
         end
         Citizen.Wait(0)
     end
@@ -76,6 +77,17 @@ end
 
 function RemoveAudio()
     DisablePoliceReports()
+end
+
+function RemoveSeatShuffle()
+    if not XRPLifeClient.Variables.canShuffle then
+        if XRPLifeClient.Variables.Vehicle.inVehicle then
+            if GetIsTaskActive(XRPLifeClient.Helpers.PlayerPed(), 165) then
+                print("SHUFFLE ACTIVE")
+                SetPedIntoVehicle(XRPLifeClient.Helpers.PlayerPed(), XRPLifeClient.Variables.Vehicle.vehicle, XRPLifeClient.Variables.Vehicle.seat)
+            end
+        end
+    end
 end
 
 function DisabledControls()

@@ -15,7 +15,7 @@ Citizen.CreateThread(function()
             if code == 200 then
                 print("\n")
                 print("---------------------------------------------------------------------------\n")
-                if tonumber(data.version) == jsonVersion.version then
+                if tostring(data.version) == tostring(jsonVersion.version) then
                     print(" XRPLife Version Updated and ready to go. Version: " .. jsonVersion.version .. "\n")
                     print("---------------------------------------------------------------------------\n")
                 else

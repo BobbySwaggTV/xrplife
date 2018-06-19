@@ -18,7 +18,6 @@ const CharacterMenu = new Vue({
         // Arrays
         characters: [],
         genders: ["Male","Female"],
-        models: [],
         nameRules: [
             (v) => !!v || "Name required",
             (v) => !!v && v.length <= 15 || "Name must be 15 characters or less",
@@ -40,7 +39,6 @@ const CharacterMenu = new Vue({
         first: "",
         last: "",
         sex: "",
-        model: "",
         dob: "",
         age: "",
 
@@ -85,7 +83,6 @@ const CharacterMenu = new Vue({
                     name: Interface.Helpers.FixName(this.first) + " " + Interface.Helpers.FixName(this.last),
                     dob: this.dob,
                     gender: this.sex,
-                    model: this.model
                 }).then( (response) => {
                     console.log(response);
                 }).catch( (error) => {
@@ -106,17 +103,5 @@ const CharacterMenu = new Vue({
                 CharacterMenu.age = Interface.Helpers.GetAge(CharacterMenu.dob);
             }
         },
-
-        "sex" : (val, oldVal) => {
-            if (val != oldVal) {
-                axios.post("http://" + CharacterMenu.resource_name + "/updatemodels", {
-                    gender: CharacterMenu.sex
-                }).then( (response) => {
-                    console.log(response);
-                }).catch( (error) => {
-                    console.log(error);
-                })
-            }
-        }
     }
 })

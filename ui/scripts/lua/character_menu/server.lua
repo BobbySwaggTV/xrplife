@@ -21,10 +21,14 @@ AddEventHandler("XRPLife_CharacterMenu:SelectCharacter", function(character)
                 local inventory = {weapons = json.decode(getinventory.data[1].weapons), items = json.decode(getinventory.data[1].items)}
                 XRPLifeTables["inventory"].methods.AddCharacterInventory(src, inventory, getcharacter.charid, function()
                     XRPLifeDB["clothing"].GetCharacterClothing(getcharacter.charid, function(clothing)
-                        math.randomseed(os.time())
-                        local spawnIndex = math.random(1, #XRPLifeConfig["server"].SpawnLocations)
-                        -- Determin if new character or not on server..... So prob change false later to something else!!!...!!!
-                        TriggerClientEvent("XRPLife_CharacterMenu:LoadPed", src, getcharacter.model, false, XRPLifeConfig["server"].SpawnLocations[spawnIndex])
+                        if #clothing.data > 0 then
+                            math.randomseed(os.time())
+                            local spawn = XRPLifeConfig["server"].SpawnLocations[math.random(1, #XRPLifeConfig["server"].SpawnLocations)]
+                            TriggerClientEvent("XRPLife_CharacterMenu:LoadPed", src, clothing.data[1].model, clothing.data[1].clothing, spawn)
+                        else
+                            local models = XRPLifeConfig["character"].models[getcharacter.gender]
+                            TriggerClientEvent("XRPLife_CharacterMenu:OpenCreator", src, models)
+                        end
                     end)
                 end)
             end)
@@ -42,7 +46,7 @@ AddEventHandler("XRPLife_CharacterMenu:CreateCharacter", function(character)
             XRPLifeTables["players"].methods.GetPlayer(src, function(player)
                 XRPLifeDB["character"].GetCharacterCount(player.id, function(character_count)
                     if character_count < XRPLifeConfig["character"].maxCharacters then
-                        XRPLifeDB["character"].CreateCharacter(character.name, character.dob, character.gender, character.model, player.id, function(createCharResults)
+                        XRPLifeDB["character"].CreateCharacter(character.name, character.dob, character.gender, player.id, function(createCharResults)
                             XRPLifeDB["character"].GetCharacters(player.id, function(characters)
                                 XRPLifeDB["inventory"].CreateInventory(createCharResults.data.insertId, function(createInvResults)
                                     TriggerClientEvent("XRPLife_CharacterMenu:CreateCharacterCallback", src, true, "", characters.data)
@@ -70,8 +74,17 @@ AddEventHandler("XRPLife_CharacterMenu:DeleteCharacter", function(charid)
     end)
 end)
 
-RegisterServerEvent("XRPLife_CharacterMenu:GetModels")
-AddEventHandler("XRPLife_CharacterMenu:GetModels", function(gender)
+---------------------------------------------------------------------------
+-- CHARACTER MODIFIER
+---------------------------------------------------------------------------
+RegisterServerEvent("XRPLife_CharacterMenu:SaveCharacter")
+AddEventHandler("XRPLife_CharacterMenu:SaveCharacter", function(characterData)
     local src = source
-    TriggerClientEvent("XRPLife_CharacterMenu:UpdateModels", src, XRPLifeConfig["character"].models[gender])
+    XRPLifeTables["characters"].methods.GetCharacter(src, function(charData)
+        print("CHARID: " .. charData.charid)
+        XRPLifeDB["clothing"].CreateClothing(charData.charid, characterData, function(createResults)
+            local spawn = XRPLifeConfig["server"].SpawnLocations[math.random(1, #XRPLifeConfig["server"].SpawnLocations)]
+            TriggerClientEvent("XRPLife_CharacterMenu:LoadPed", src, characterData.model, json.encode(characterData.clothing), spawn)
+        end)
+    end)
 end)

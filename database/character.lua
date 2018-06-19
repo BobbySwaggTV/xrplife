@@ -43,14 +43,13 @@ end
 ---------------------------------------------------------------------------
 -- Creates a players character
 ---------------------------------------------------------------------------
-XRPLifeDB["character"].CreateCharacter = function(name, dob, gender, model, playerid, callback)
+XRPLifeDB["character"].CreateCharacter = function(name, dob, gender, playerid, callback)
     exports["externalsql"]:DBAsyncQuery({
-        string = "INSERT INTO characters SET `name` = :name, `dob` = :dob, `gender` = :gender, `model` = :model, `bank` = :bank, `playerid` = :playerid",
+        string = "INSERT INTO characters SET `name` = :name, `dob` = :dob, `gender` = :gender, `bank` = :bank, `playerid` = :playerid",
         data = {
             name = name,
             dob = dob,
             gender = gender,
-            model = model,
             bank = XRPLifeConfig["character"].starterMoney,
             playerid = playerid
         }

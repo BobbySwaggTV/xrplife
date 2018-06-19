@@ -56,6 +56,9 @@ const AdminMenu = new Vue({
         IsBanPerm: false,
         ChosenBanTime: ""
 
+        // Whitelisting Player
+
+
     },
 
     methods: {
@@ -137,7 +140,7 @@ const AdminMenu = new Vue({
 
             if (this.CheckPerm("Chat")) {
                 if (this.muteChatNotification == false) {
-                    var notif = new Audio("././sounds/stairs.ogg");
+                    var notif = new Audio("././sounds/admin_chat_notification.ogg");
                     notif.play();
                 }
             }

@@ -1,11 +1,31 @@
 XRPLifeClient = {}
 XRPLifeClient.Helpers = {}
 XRPLifeClient.Variables = {}
+XRPLifeClient.Tables = {}
 
 ---------------------------------------------------------------------------
--- XRPLife Helper Variables
+-- Helper Variables
 ---------------------------------------------------------------------------
-XRPLifeClient.Variables.inVehicle = {inVehicle = false, vehicle = nil, seat = nil}
+XRPLifeClient.Variables.canShuffle = false
+XRPLifeClient.Variables.Vehicle = {inVehicle = false, vehicle = nil, seat = nil}
+
+---------------------------------------------------------------------------
+-- Helper Tables
+---------------------------------------------------------------------------
+XRPLifeClient.Tables.PedComponents = {
+    ["FACE"] = 0, -- DO NOT ALLOW TEXTURE CHANGES
+    ["HEAD"] = 1,  -- ALLOW TEXTURE CHANGES [Will be invisible on a set value??]
+    ["HAIR"] = 2, -- ALLOW TEXTURE CHANGES [Woll be invisible on a set value??]
+    ["ARMS"] = 3, -- ALLOW TEXTURE BUT REMOVE ABILITY TO HIDE ARMS....
+    ["LEGS"] = 4, -- ALLOW TEXTURE CHANGE BUT REMOVE ABILITY TO HIDE LEGS
+    ["BAGS"] = 5, -- TEXTURES HIDES / SHOWS on some [Didn't check all]
+    ["SHOES"] = 6, -- ALOW TEXTURES BUT BE CAREFUL....
+    ["NECK"] = 7, -- DON'T ALLOW TEXTURES
+    ["ACCESSORIES"] = 8, -- WORK VESTS / BELTS / VESTS
+    ["VESTS"] = 9, -- MILITARY / POLICE VESTS
+    ["OVERLAYS"] = 10, -- JACKET BADGES
+    ["JACKETS"] = 11 -- SWEATERS / JACKETS
+}
 
 ---------------------------------------------------------------------------
 -- Gets Local Players Ped
@@ -108,5 +128,10 @@ end
 XRPLifeClient.Helpers.DebugMessage = function(message)
     print(tostring("[XRPLife Debug]: " .. message))
 end
+
+---------------------------------------------------------------------------
+-- Helper Tables
+---------------------------------------------------------------------------
+--XRPLifeClient.Tables.WeaponList = XRPLifeClient.Helpers.ReadOnlyTable(json.decode(LoadResourceFile(GetCurrentResourceName(), "./helpers/lists/weaponlist.json")))
 
 XRPLifeClient.Helpers.DebugMessage("Helpers - client.lua Loaded")

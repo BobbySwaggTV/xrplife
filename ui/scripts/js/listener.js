@@ -43,10 +43,6 @@ document.onreadystatechange = () => {
                 CharacterMenu.characters = new_chars;
                 CharacterMenu.showMenu = true;
 
-            } else if (event.data.type == "update_character_menu_models") {
-
-                CharacterMenu.models = event.data.ped_models;
-
             } else if (event.data.type == "create_character_menu_callback") {
 
                 if  (event.data.status) {
@@ -72,6 +68,23 @@ document.onreadystatechange = () => {
                 CharacterMenu.characters = new_chars;
                 CharacterMenu.showLoading = false;
 
+            }
+
+            ///////////////////////////////////////////////////////////////////////////
+            // Character Creator
+            ///////////////////////////////////////////////////////////////////////////
+            if (event.data.type == "enable_character_creator_menu") {
+
+                CharacterStarter.OpenMenu(event.data.models);
+
+            } else if (event.data.type == "update_character_model_components") {
+
+                CharacterStarter.UpdateModelComponents(event.data.components);
+
+            } else if (event.data.type == "update_character_model_draw_textures") {
+
+                CharacterStarter.UpdateDrawableTextures(event.data.component, event.data.textures);
+                
             }
 
             ///////////////////////////////////////////////////////////////////////////

@@ -54,7 +54,7 @@ files {
     ---------------------------------------------------------------------------
 
     -- Admin Menu Sounds
-    "ui/sounds/stairs.ogg",
+    "ui/sounds/admin_chat_notification.ogg",
 
     ---------------------------------------------------------------------------
     -- IMAGE FILES
@@ -75,6 +75,7 @@ files {
 
     -- NUI Character Menu
     "ui/scripts/js/charactermenu.js",
+    "ui/scripts/js/characterstartermenu.js",
 
     -- NUI ATM Menu
     "ui/scripts/js/atmmenu.js",
@@ -94,6 +95,7 @@ files {
 
     -- NUI Character Menu
     "ui/css/charactermenu.css",
+    "ui/css/characterstartermenu.css",
 
     -- NUI ATM Menu
     "ui/css/atmmenu.css",
@@ -102,7 +104,7 @@ files {
     "ui/css/adminmenu.css",
 
     -- NUI Inventory Menu
-    "ui/css/inventory.css",
+    "ui/css/inventory.css"
 }
 
 ---------------------------------------------------------------------------
@@ -244,6 +246,7 @@ client_script "ui/scripts/lua/notification/client.lua"
 -- Client Character Scripts
 client_script "ui/scripts/lua/character_menu/client.lua"
 client_script "ui/scripts/lua/character_menu/skycam.lua"
+client_script "ui/scripts/lua/character_menu/mod_client.lua"
 
 -- Client ATM Scripts
 client_script "ui/scripts/lua/atm_menu/client.lua"

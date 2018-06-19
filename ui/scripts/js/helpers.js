@@ -2,7 +2,7 @@ Interface = {};
 Interface.Helpers = {}
 
 ///////////////////////////////////////////////////////////////////////////
-// Fixes players character name by capitalizing the first letters in their name
+// Fixes players character name by capitalizing the first letters in their names
 ///////////////////////////////////////////////////////////////////////////
 Interface.Helpers.FixName = (name) => {
     var newName = ""
