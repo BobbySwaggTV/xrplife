@@ -53,6 +53,8 @@ end)
 
 RegisterNetEvent("XRPLife_CharacterMenu:LoadPed")
 AddEventHandler("XRPLife_CharacterMenu:LoadPed", function(ped, clothData, spawn)
+    TriggerEvent("XRPLife_CharacterMenu:StopSkyCamera")
+    TriggerEvent("XRPLife_CharacterMenu:StopCreatorCamera")
     exports["spawnmanager"]:spawnPlayer({x = spawn.x, y = spawn.y, z = spawn.z, heading = spawn.h, model = ped})
     Citizen.Wait(3000)
     local ped = XRPLifeClient.Helpers.PlayerPed()
@@ -78,7 +80,8 @@ AddEventHandler("XRPLife_CharacterMenu:LoadPed", function(ped, clothData, spawn)
 
     -- Set Tattoos
 
-    TriggerEvent("XRPLife_CharacterMenu:StopSkyCamera")
-    TriggerEvent("XRPLife_CharacterMenu:StopCreatorCamera")
     TriggerEvent("XRPLife_Notification:Success", "XRPLife", "Welcome! Hope you enjoy. STILL WIP", 10000, false, "rightCenter")
+    SetPlayerInvisibleLocally(PlayerId(), false)
+    SetEntityVisible(ped, true)
+    SetPlayerInvincible(PlayerId(), false)
 end)

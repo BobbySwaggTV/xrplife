@@ -1,10 +1,5 @@
--- XRPLifeClient.Variables.Vehicle = {inVehicle = false, vehicle = nil, seat = nil}
 local trackedVehicle = nil
 local pastHealth = 0.0
-
-RegisterCommand("toolkit", function()
-    SetVehicleEngineHealth(trackedVehicle, 300.0)
-end, false)
 
 Citizen.CreateThread(function()
     while true do
@@ -29,23 +24,18 @@ Citizen.CreateThread(function()
                     if calculatedDamage > 0.0 and calculatedDamage <= 25.0 then
                         newHealth = currentHealth - 100.0
                         SetVehicleEngineHealth(vehicle, newHealth)
-                        TriggerEvent("XRPLife_Notification:Error", "Vehicle Damage", "Smaller Damage", 4000, false, "rightCenter")
                     elseif calculatedDamage > 25.0 and calculatedDamage <= 50.0 then
                         newHealth = currentHealth - 200.0
                         SetVehicleEngineHealth(vehicle, newHealth)
-                        TriggerEvent("XRPLife_Notification:Error", "Vehicle Damage", "Small Damage", 4000, false, "rightCenter")
                     elseif calculatedDamage > 50.0 and calculatedDamage <= 75.0 then
                         newHealth = currentHealth - 300.0
                         SetVehicleEngineHealth(vehicle, newHealth)
-                        TriggerEvent("XRPLife_Notification:Error", "Vehicle Damage", "Medium Damage", 4000, false, "rightCenter")
                     elseif calculatedDamage > 75.0 and calculatedDamage <= 100.0 then
                         newHealth = currentHealth - 400.0
                         SetVehicleEngineHealth(vehicle, newHealth)
-                        TriggerEvent("XRPLife_Notification:Error", "Vehicle Damage", "Large Damage", 4000, false, "rightCenter")
                     elseif calculatedDamage > 100.0 then
                         newHealth = 0.0
                         SetVehicleEngineHealth(vehicle, newHealth)
-                        TriggerEvent("XRPLife_Notification:Error", "Vehicle Damage", "Critical Damage", 4000, false, "rightCenter")
                     end
                     pastHealth = GetVehicleEngineHealth(vehicle)
                 end

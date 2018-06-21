@@ -257,7 +257,17 @@ const CharacterStarter = new Vue({
                     console.log(error);
                 })
             }
-        }
+        },
+
+        RotateCharacter(value) {
+            axios.post("http://" + this.resource_name + "/rotatecharacter", {
+                amount: value
+            }).then( (response) => {
+                console.log(response);
+            }).catch( (error) => {
+                console.log(error);
+            })
+        },
     },
 
     watch: {

@@ -552,6 +552,18 @@
 
                             </v-tab-item>
                         </v-tabs>
+                        <div>
+                            <v-container grid-list-md>
+                                <v-layout row>
+                                    <v-flex xs6>
+                                        <v-btn color="blue" block dark @click="RotateCharacter(30)"><v-icon>rotate_left</v-icon></v-btn>
+                                    </v-flex>
+                                    <v-flex xs6>
+                                        <v-btn color="blue" block dark @click="RotateCharacter(-30)"><v-icon>rotate_right</v-icon></v-btn>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </div>
                     </div>
                 </div>
             </v-content>

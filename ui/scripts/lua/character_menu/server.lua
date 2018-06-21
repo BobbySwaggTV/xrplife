@@ -81,7 +81,6 @@ RegisterServerEvent("XRPLife_CharacterMenu:SaveCharacter")
 AddEventHandler("XRPLife_CharacterMenu:SaveCharacter", function(characterData)
     local src = source
     XRPLifeTables["characters"].methods.GetCharacter(src, function(charData)
-        print("CHARID: " .. charData.charid)
         XRPLifeDB["clothing"].CreateClothing(charData.charid, characterData, function(createResults)
             local spawn = XRPLifeConfig["server"].SpawnLocations[math.random(1, #XRPLifeConfig["server"].SpawnLocations)]
             TriggerClientEvent("XRPLife_CharacterMenu:LoadPed", src, characterData.model, json.encode(characterData.clothing), spawn)

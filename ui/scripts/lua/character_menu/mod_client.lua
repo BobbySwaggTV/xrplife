@@ -1,3 +1,5 @@
+local creatorActive = false
+
 ---------------------------------------------------------------------------
 -- Events
 ---------------------------------------------------------------------------
@@ -10,6 +12,7 @@ AddEventHandler("XRPLife_CharacterMenu:OpenCreator", function(models)
         })
         TriggerEvent("XRPLife_CharacterMenu:StopSkyCamera")
         TriggerEvent("XRPLife_CharacterMenu:StartCreatorCamera")
+        creatorActive = true
 end)
 
 ---------------------------------------------------------------------------
@@ -35,9 +38,19 @@ RegisterNUICallback("finishcharactercreator", function(data, cb)
     cb("ok")
 end)
 
+RegisterNUICallback("rotatecharacter", function(data, cb)
+    RotatePed(data.amount)
+    cb("ok")
+end)
+
 ---------------------------------------------------------------------------
 -- Functions
 ---------------------------------------------------------------------------
+function RotatePed(amount)
+    local ped = XRPLifeClient.Helpers.PlayerPed()
+    SetEntityHeading(ped, GetEntityHeading(ped) + amount)
+end
+
 function SetModel(model)
     local model = GetHashKey(model)
     RequestModel(model)
@@ -135,6 +148,10 @@ function UpdateCreatorMenu()
             }
         }
     })
+    creatorActive = false
+    SetPlayerInvisibleLocally(PlayerId(), false)
+    SetEntityVisible(ped, true)
+    SetPlayerInvincible(PlayerId(), false)
 end
 
 function UpdateDrawableMenuTextures(component)
@@ -202,7 +219,20 @@ function SaveCharacterData(model)
             }
         }
     })
+    creatorActive = false
 end
+
+Citizen.CreateThread(function()
+    while true do
+        if creatorActive then
+            local ped = XRPLifeClient.Helpers.PlayerPed()
+            SetPlayerInvisibleLocally(PlayerId(), false)
+            SetEntityVisible(ped, false)
+            SetPlayerInvincible(PlayerId(), true)
+        end
+        Citizen.Wait(250)
+    end
+end)
 
 ---------------------------------------------------------------------------
 -- CAMERA STUFF
@@ -214,13 +244,12 @@ AddEventHandler("XRPLife_CharacterMenu:StartCreatorCamera", function()
     local ped = XRPLifeClient.Helpers.PlayerPed()
     SetEntityCoords(ped, 409.010, -999.893, -100.004, 0.0, 0.0, 0.0, 0)
     SetEntityHeading(ped, 274.177)
-    local pedOffset = GetOffsetFromEntityInWorldCoords(ped, 0.0, 1.5, 0.2)
+    local pedOffset = GetOffsetFromEntityInWorldCoords(ped, 0.0, 1.8, 0.2)
     local pedRot = GetEntityRotation(ped, 1)
     camera = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
     SetCamCoord(camera, pedOffset.x, pedOffset.y, pedOffset.z)
     SetCamRot(camera, pedRot.x - 10.0, pedRot.y, pedRot.z - 180.0, 1)
     RenderScriptCams(1, 0, 0, 1, 1)
-    NetworkSetEntityVisibleToNetwork(ped, false)
 end)
 
 RegisterNetEvent("XRPLife_CharacterMenu:StopCreatorCamera")
